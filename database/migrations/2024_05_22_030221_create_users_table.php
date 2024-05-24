@@ -12,11 +12,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('email', 30)->unique();
-            $table->string('password', 30);
+            $table->string('password', 255);
             $table->string('no_hp', 15);
             $table->string('saldo', 15);
             $table->unsignedBigInteger('id_role');
-            $table->foreign('id_role')->references('id_role')->on('role');
+            $table->foreign('id_role')->references('id')->on('role');
             $table->timestamps();
         });
     }
