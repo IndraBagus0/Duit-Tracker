@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="sidebar-item  {{ Request::is('laporan*') ? 'active' : '' }}">
-                        <a href="" class='sidebar-link'>
+                        <a href="/laporan" class='sidebar-link'>
                             <i class="bi bi-file-earmark-medical-fill"></i>
                             <span>Data Laporan</span>
                         </a>
