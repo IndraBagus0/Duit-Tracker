@@ -25,7 +25,7 @@
             </div>
             </div>
 
-        <!-- Bordered table start -->
+        <!-- Menampilkan tabel -->
         <section class="section">
             <div class="row" id="table-bordered">
                 <div class="col-12">
