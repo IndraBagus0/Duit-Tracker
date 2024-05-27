@@ -12,6 +12,7 @@ class LaporanController extends Controller
     {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
+        $jenisTransaksi = $request->input('jenis_transaksi');
 
         $query = Transaksi::query();
 
@@ -19,15 +20,24 @@ class LaporanController extends Controller
             $query->whereBetween('tanggal_transaksi', [$startDate, $endDate]);
         }
 
+        if ($jenisTransaksi) {
+            $query->where('jenis_transaksi', $jenisTransaksi);
+        }
+
         $transaksi = $query->with('kategori')->get();
 
-        return view('laporan.index', compact('transaksi', 'startDate', 'endDate'));
+        // Menghitung total nominal berdasarkan jenis transaksi
+        $totalPemasukan = $transaksi->where('jenis_transaksi', 'pemasukan')->sum('nominal_transaksi');
+        $totalPengeluaran = $transaksi->where('jenis_transaksi', 'pengeluaran')->sum('nominal_transaksi');
+
+        return view('laporan.index', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran','jenisTransaksi',));
     }
 
     public function print(Request $request)
     {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
+        $jenisTransaksi = $request->input('jenis_transaksi');
 
         $query = Transaksi::query();
 
@@ -35,8 +45,16 @@ class LaporanController extends Controller
             $query->whereBetween('tanggal_transaksi', [$startDate, $endDate]);
         }
 
+        if ($jenisTransaksi) {
+            $query->where('jenis_transaksi', $jenisTransaksi);
+        }
+
         $transaksi = $query->with('kategori')->get();
 
-        return view('laporan.print', compact('transaksi', 'startDate', 'endDate'));
+        // Menghitung total nominal berdasarkan jenis transaksi
+        $totalPemasukan = $transaksi->where('jenis_transaksi', 'pemasukan')->sum('nominal_transaksi');
+        $totalPengeluaran = $transaksi->where('jenis_transaksi', 'pengeluaran')->sum('nominal_transaksi');
+
+        return view('laporan.print', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran','jenisTransaksi',));
     }
 }

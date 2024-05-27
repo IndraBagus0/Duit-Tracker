@@ -18,7 +18,8 @@
 </head>
 <body>
     <h2>Laporan Transaksi</h2>
-    <p>Periode: {{ $startDate }} sampai {{ $endDate }}</p>
+    <p>Periode: {{ $startDate }} - {{ $endDate }}</p>
+    <p>Jenis Transaksi: {{ $jenisTransaksi ? ucfirst($jenisTransaksi) : 'Semua' }}</p>
     <table>
         <thead>
             <tr>
@@ -42,6 +43,16 @@
         </tr>
         @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Total Pemasukkan</th>
+                <th colspan="3">{{ number_format($totalPemasukan, 2) }}</th>
+            </tr>
+            <tr>
+                <th colspan="3">Total Pengeluaran</th>
+                <th colspan="3">{{ number_format($totalPengeluaran, 2) }}</th>
+            </tr>
+        </tfoot>
     </table>
     <script>
         window.print();
