@@ -22,10 +22,15 @@
                         <div class="text-md-end mb-3 mb-md-0">
                             <form method="GET" action="{{ route('laporan.index') }}" class="form-inline">
                                 <div class="input-group">
-                                    <input type="date" name="start_date" class="form-control" value="{{ $startDate }}">
-                                    <input type="date" name="end_date" class="form-control" value="{{ $endDate }}">
-                                    <button type="submit" class="btn btn-primary">Filter</button>
-                                    <a href="{{ route('laporan.print', ['start_date' => $startDate, 'end_date' => $endDate]) }}" class="btn btn-secondary" target="_blank">Print</a>
+                                    <input type="date" name="start_date" class="form-control me-2" value="{{ $startDate }}">
+                                    <input type="date" name="end_date" class="form-control me-2" value="{{ $endDate }}">
+                                    <select name="jenis_transaksi" class="form-control me-2">
+                                        <option value="">Jenis Transaksi</option>
+                                        <option value="pemasukan" {{ $jenisTransaksi == 'pemasukan' ? 'selected' : '' }}>Pemasukan</option>
+                                        <option value="pengeluaran" {{ $jenisTransaksi == 'pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary me-2">Filter</button>
+                                    <a href="{{ route('laporan.print', ['start_date' => $startDate, 'end_date' => $endDate, 'jenis_transaksi' => $jenisTransaksi]) }}" class="btn btn-secondary" target="_blank">Print</a>
                                 </div>
                             </form>
                         </div>
@@ -54,7 +59,7 @@
                                         @foreach ($transaksi as $index => $trx)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $trx->tanggal_transaksi}}</td>
+                                            <td>{{ $trx->tanggal_transaksi }}</td>
                                             <td>{{ $trx->kategori->nama_kategori }}</td>
                                             <td>{{ number_format($trx->nominal_transaksi, 2) }}</td>
                                             <td>{{ $trx->catatan_transaksi }}</td>
@@ -62,6 +67,16 @@
                                         </tr>
                                         @endforeach
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="3">Total Pemasukan</th>
+                                                <th colspan="3">{{ number_format($totalPemasukan, 2) }}</th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3">Total Pengeluaran</th>
+                                                <th colspan="3">{{ number_format($totalPengeluaran, 2) }}</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
