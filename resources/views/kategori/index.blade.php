@@ -69,6 +69,7 @@
         <!-- Bordered table end -->
 
         @include('layouts.footer')
+        
     </div>
 </div>
 @endsection
