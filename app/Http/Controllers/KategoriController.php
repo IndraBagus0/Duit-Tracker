@@ -34,7 +34,7 @@ class KategoriController extends Controller
         $kategori = Kategori::create($validatedData);
     
         // Redirect ke rute daftarKategori
-        return redirect()->route('daftarKategori');
+        return redirect()->route('daftarKategori')->with('success', 'Kategori berhasil ditambahkan');;
     }
 
     // edit kategori
@@ -52,7 +52,7 @@ class KategoriController extends Controller
         // Validasi
         $validatedData = $request->validate([
             'nama_kategori' => 'required|string|max:255',
-            'keterangan_kategori' => 'nullable|string',
+            'keterangan_kategori' => 'string|required',
         ]);
     
         // Temukan kategori ID

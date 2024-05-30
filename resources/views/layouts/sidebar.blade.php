@@ -86,7 +86,6 @@
                         <span>Data User</span>
                     </a>
                 </li>
-
             </ul>
         </div>
     </div>

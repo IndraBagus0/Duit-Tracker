@@ -14,35 +14,44 @@
             <div class="page-title">
                 <div class="row align-items-center">
                     <div class="col-12 col-md-6">
-                        <h3>Edit Kategori</h3>
-                        <p class="text-subtitle text-muted">Berikut adalah fitur edit kategori.</p>
+                        <h3>Edit Pengguna</h3>
+                        <p class="text-subtitle text-muted">Berikut adalah fitur edit pengguna.</p>
                     </div>
                     <div class="col-12 col-md-6 mt-md-0">
                         <div class="text-md-end mb-3 mb-md-0">
-                            <a href="/kategori" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
+                            <a href="/users" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                <form class="form" action="{{ route('updateKategori', ['id_kategori' => $kategori->id_kategori]) }}" method="POST" data-parsley-validate>
+                    <form action="{{ route('updateUser', ['id' => $user->id]) }}" method="POST">
                         @csrf
-                   
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mandatory">
-                                    <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                                    <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="{{ $kategori->nama_kategori }}" placeholder="Masukkan nama kategori" data-parsley-required="true">
+                                    <label for="name" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Masukkan nama lengkap" data-parsley-required="true">
                                 </div>
 
                                 <div class="form-group mandatory">
-                                    <label for="keterangan_kategori" class="form-label">Keterangan Kategori</label>
-                                    <textarea class="form-control" id="keterangan_kategori" name="keterangan_kategori" placeholder="Masukkan keterangan kategori" data-parsley-required="true">{{ $kategori->keterangan_kategori }}</textarea>
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Masukkan email" data-parsley-required="true">
+                                </div>
+
+                                <div class="form-group mandatory">
+                                    <label for="phone" class="form-label">No HP</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password baru (opsional)">
                                 </div>
 
                                 <div class="form-group text-end mt-3 mb-0">

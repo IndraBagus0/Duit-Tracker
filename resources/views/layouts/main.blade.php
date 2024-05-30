@@ -18,16 +18,17 @@
 
 <body>
     @yield('contents')
-
-
     <script src="{{ asset('template/assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('template/assets/js/app.js') }}"></script>
     <script src="{{ asset('template/assets/js/pages/date-picker.js') }}"></script>
     <script src="{{ asset('template/assets/extensions/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('template/assets/extensions/jquery/jquery.min.js')}}"></script>
+    <script src="{{ asset('template/assets/extensions/parsleyjs/parsley.min.js')}}"></script>
+    <script src="{{ asset('template/assets/js/pages/parsley.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Need: Apexcharts -->
     <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/pages/dashboard.js') }}"></script>
 </body>
-
 </html>
