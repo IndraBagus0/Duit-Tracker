@@ -51,7 +51,7 @@
                     </li>
 
                     <li class="sidebar-item  {{ Request::is('user*') ? 'active' : '' }}">
-                        <a href="" class='sidebar-link'>
+                        <a href="/users" class='sidebar-link'>
                             <i class="bi bi-person-circle"></i>
                             <span>Data User</span>
                         </a>

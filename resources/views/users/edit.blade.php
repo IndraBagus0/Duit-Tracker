@@ -34,29 +34,24 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Masukkan nama lengkap" required>
+                                <div class="form-group mandatory">
+                                    <label for="name" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Masukkan nama lengkap" data-parsley-required="true">
+                                </div>
+
+                                <div class="form-group mandatory">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Masukkan email" data-parsley-required="true">
+                                </div>
+
+                                <div class="form-group mandatory">
+                                    <label for="phone" class="form-label">No HP</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Masukkan email" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="phone">No HP</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password">Password</label>
+                                    <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password baru (opsional)">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="password_confirmation">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi password baru (opsional)">
                                 </div>
 
                                 <div class="form-group text-end mt-3 mb-0">

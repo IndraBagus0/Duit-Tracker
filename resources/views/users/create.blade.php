@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-12 col-md-6 mt-md-0">
                         <div class="text-md-end mb-3 mb-md-0">
-                            <a href="/user" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
+                            <a href="/users" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
                         </div>
                     </div>
                 </div>
@@ -29,33 +29,33 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('storeUser') }}" method="POST">
+                    <form class="form" action="{{ route('storeUser') }}" method="POST" data-parsley-validate>
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" required>
+                                <div class="form-group mandatory">
+                                    <label for="name" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" data-parsley-required="true">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
+                                <div class="form-group mandatory">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" data-parsley-required="true">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="phone">No HP</label>
-                                    <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan nomor HP" required>
+                                <div class="form-group mandatory">
+                                    <label for="phone" class="form-label">No HP</label>
+                                    <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan nomor HP" data-parsley-required="true">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
+                                <div class="form-group mandatory">
+                                    <label for="saldo" class="form-label">Saldo</label>
+                                    <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Masukkan nominal saldo" data-parsley-required="true">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="password_confirmation">Konfirmasi Password</label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi password" required>
+                                <div class="form-group mandatory">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" data-parsley-required="true">
                                 </div>
 
                                 <div class="form-group text-end mt-3 mb-0">

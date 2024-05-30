@@ -24,14 +24,14 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::post('/kategori/create', [KategoriController::class, 'store'])->name('storeKategori');
     Route::get('/kategori/{id_kategori}/edit', [KategoriController::class, 'edit'])->name('editKategori');
     Route::post('/kategori/{id_kategori}/edit', [KategoriController::class, 'update'])->name('updateKategori');
-    Route::get('/kategori/{id_kategori}/delete', [KategoriController::class, 'destroy'])->name('deleteKategori');
+    Route::delete('/kategori/{id_kategori}/delete', [KategoriController::class, 'destroy'])->name('deleteKategori');
 
     Route::get('/users', [DataUserController::class, 'index'])->name('daftarUser');
     Route::get('/users/create', [DataUserController::class, 'create'])->name('createUser');
     Route::post('/users/create', [DataUserController::class, 'store'])->name('storeUser');
     Route::get('/users/{id}/edit', [DataUserController::class, 'edit'])->name('editUser');
     Route::post('/users/{id}/edit', [DataUserController::class, 'update'])->name('updateUser');
-    Route::get('/users/{id}/delete', [DataUserController::class, 'destroy'])->name('deleteUser');
+    Route::delete('/users/{id}/delete', [DataUserController::class, 'destroy'])->name('deleteUser');
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
