@@ -50,19 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group has-icon-left">
-                                        <label for="jenis-id-icon">Jenis</label>
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control"
-                                                placeholder="Ketik disini untuk jenis" id="jenis-id-icon">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-fonts"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                                
                                 <div class="col-12">
                                     <div class="form-group has-icon-left">
                                         <label for="kategori-id-icon">Kategori</label>
