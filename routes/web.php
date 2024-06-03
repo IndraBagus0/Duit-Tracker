@@ -65,4 +65,9 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
-});
+
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->name('pendapatan');
+    Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->name('pengeluaran');
+}); 
