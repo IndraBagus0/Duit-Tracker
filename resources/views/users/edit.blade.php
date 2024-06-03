@@ -23,6 +23,15 @@
                         </div>
                     </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -45,8 +54,8 @@
                                 </div>
 
                                 <div class="form-group mandatory">
-                                    <label for="phone" class="form-label">No HP</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
+                                    <label for="no_hp" class="form-label">No HP</label>
+                                    <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
                                 </div>
 
                                 <div class="form-group">

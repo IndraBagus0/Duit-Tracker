@@ -26,15 +26,26 @@ class KategoriController extends Controller
     // tambah data
     public function store(Request $request)
     {
+        // Validasi data input
         $validatedData = $request->validate([
-            'nama_kategori' => 'required|string|max:255',
-            'keterangan_kategori' => 'nullable|string',
+            'nama_kategori' => 'required|string|min:5|max:255',
+            'keterangan_kategori' => 'nullable|string|min:10',
+        ],
+        [
+            // Pesan kesalahan
+            'nama_kategori.required' => 'Nama kategori wajib diisi.',
+            'nama_kategori.string' => 'Nama kategori harus berupa teks.',
+            'nama_kategori.min' => 'Nama kategori harus memiliki minimal 5 karakter.',
+            'nama_kategori.max' => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'keterangan_kategori.string' => 'Keterangan kategori harus berupa teks.',
+            'keterangan_kategori.min' => 'Keterangan kategori minimal 10 karakter.',
         ]);
     
+        // Jika validasi berhasil, buat kategori baru
         $kategori = Kategori::create($validatedData);
     
-        // Redirect ke rute daftarKategori
-        return redirect()->route('daftarKategori')->with('success', 'Kategori berhasil ditambahkan');;
+        // Redirect ke rute daftarKategori dengan pesan sukses
+        return redirect()->route('daftarKategori')->with('success', 'Kategori berhasil ditambahkan');
     }
 
     // edit kategori
@@ -49,10 +60,19 @@ class KategoriController extends Controller
     // fungsi update kategori
     public function update(Request $request, $id_kategori)
     {
-        // Validasi
+        // Validasi data input
         $validatedData = $request->validate([
-            'nama_kategori' => 'required|string|max:255',
-            'keterangan_kategori' => 'string|required',
+            'nama_kategori' => 'required|string|min:5|max:255',
+            'keterangan_kategori' => 'nullable|string|min:10',
+        ],
+        [
+            // Pesan kesalahan
+            'nama_kategori.required' => 'Nama kategori wajib diisi.',
+            'nama_kategori.string' => 'Nama kategori harus berupa teks.',
+            'nama_kategori.min' => 'Nama kategori harus memiliki minimal 5 karakter.',
+            'nama_kategori.max' => 'Nama kategori tidak boleh lebih dari 255 karakter.',
+            'keterangan_kategori.string' => 'Keterangan kategori harus berupa teks.',
+            'keterangan_kategori.min' => 'Keterangan kategori minimal 10 karakter.',
         ]);
     
         // Temukan kategori ID
