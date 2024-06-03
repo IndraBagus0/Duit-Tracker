@@ -47,7 +47,7 @@
             </>
             <div class="text-center mt-5 text-lg fs-4">
                 <p class="text-gray-600">Belum punya akun? <a href="/register" class="font-bold">Buat Akun?</a></p>
-                <p><a class="font-bold" href="auth-forgot-password.html">Lupa Password ?</a></p>
+                <p><a class="font-bold" href="/forgot-password">Lupa Password ?</a></p>
             </div>
         </div>
     </div>
