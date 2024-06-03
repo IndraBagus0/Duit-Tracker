@@ -33,7 +33,7 @@
       @enderror
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
-                    <input type="password" name="password" class="form-control @error('password') form-control-xl @enderror" placeholder="Password">
+                    <input type="password" name="password" class="form-control @error('password') form-control-xl @enderror" placeholder="Kata Sandi">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
@@ -43,18 +43,11 @@
         </div>
       @enderror
                 </div>
-                <div class="form-check form-check-lg d-flex align-items-end">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label text-gray-600" for="flexCheckDefault">
-                        Keep me logged in
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Masuk</button>
             </>
             <div class="text-center mt-5 text-lg fs-4">
-                <p class="text-gray-600">Don't have an account? <a href="auth-register.html" class="font-bold">Sign
-                        up</a>.</p>
-                <p><a class="font-bold" href="auth-forgot-password.html">Forgot password?</a>.</p>
+                <p class="text-gray-600">Belum punya akun? <a href="/register" class="font-bold">Buat Akun?</a></p>
+                <p><a class="font-bold" href="/forgot-password">Lupa Password ?</a></p>
             </div>
         </div>
     </div>

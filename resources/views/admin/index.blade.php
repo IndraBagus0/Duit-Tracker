@@ -1,14 +1,6 @@
 @extends('layouts.main')
 
 @section('contents')
-<!-- GANTI INI BANG -->
-<div class="container">
-    <h2>Selamat Datang admin</h2>
-    <form action="/logout" method="post">
-        @csrf
-        <button type="submit" class="btn btn-primary">Logout</button>
-    </form>
-</div>
 <div id="app">
     @include('layouts.sidebar')
     <div id="main">
