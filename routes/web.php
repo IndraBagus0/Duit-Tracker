@@ -7,8 +7,17 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\RegisterController;
 
-Route::get('/', [AuthController::class, 'login'])->name('login');
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'dologin']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
