@@ -23,52 +23,88 @@
                         <a href="{{ route('createKategori') }}" class="btn btn-primary">Tambahkan Data</a>
                     </div>
             </div>
+
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible show fade" role="alert">
+                <i class="bi bi-check-circle"></i> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             </div>
 
-        <!-- Bordered table start -->
+        <!-- Menampilkan tabel -->
         <section class="section">
-            <div class="row" id="table-bordered">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-content">
-                            
-                            <!-- table bordered -->
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>KATEGORI</th>
-                                            <th>KETERANGAN</th>
-                                            <th>ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($kategori as $kategori)
+    <div class="row" id="table-bordered">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-content">
+                    <!-- table bordered -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>KATEGORI</th>
+                                    <th>KETERANGAN</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($kategori as $index => $item)
                                     <tr>
-                                        <td class="text-bold-500">{{ $loop->index + 1 }}</td>
-                                        <td>{{ $kategori->nama_kategori }}</td>
-                                        <td class="text-bold-500">{{ $kategori->keterangan_kategori }}</td>
+                                        <td class="text-bold-500">{{ $index + 1 }}</td>
+                                        <td>{{ $item->nama_kategori }}</td>
+                                        <td class="text-bold-500">{{ $item->keterangan_kategori }}</td>
                                         <td>
-                                            <a href="{{route('editKategori', ['id_kategori' => $kategori->id_kategori])}}"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i></a>
-                                        
-                                            <a href="{{ route('deleteKategori', ['id_kategori' => $kategori->id_kategori]) }}" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash-2"></i></a>
-                                    </div>
-                                        
+                                            <a href="{{ route('editKategori', ['id_kategori' => $item->id_kategori]) }}">
+                                                <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i>
+                                            </a>
+
+                                            <a href="#" onclick="deleteConfirmation({{ $item->id_kategori }})">
+                                                <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash-2"></i>
+                                            </a>
+
+                                            <form id="delete-form-{{ $item->id_kategori }}" action="{{ route('deleteKategori', ['id_kategori' => $item->id_kategori]) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
                                     </tr>
-                                    @endforeach
-                                </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function deleteConfirmation(id) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: "Anda tidak akan dapat mengembalikan data ini!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
+    }
+</script>
+
         <!-- Bordered table end -->
 
         @include('layouts.footer')
+        
     </div>
 </div>
 @endsection
