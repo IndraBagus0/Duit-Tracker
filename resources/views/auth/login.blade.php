@@ -10,8 +10,8 @@
             <div class="auth-logo">
                 <a href="/"><img src="{{asset ('template/assets/images/logo/logo.svg')}}" alt="Logo"></a>
             </div>
-            <h1 class="auth-title">Log in.</h1>
-            <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+            <h1 class="auth-title">Masuk</h1>
+            <p class="auth-subtitle mb-5">Masuk dengan data Anda yang Anda masukkan saat pendaftaran.</p>
             @if (session()->has('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('error') }}
