@@ -9,7 +9,7 @@
                     <div class="auth-logo">
                         <a href="index.html"><img src="{{ asset('template/assets/images/logo/logo.svg')}}" alt="Logo"></a>
                     </div>
-                    <h1 class="auth-title">Reset Password</h1>
+                    <h4 class="auth-title">Reset Password Untuk .</h4>
                     <p class="auth-subtitle mb-5">Masukkan password baru kamu.</p>
 
                     <form action="{{ route('reset-password-action') }}" method="post">

@@ -2,97 +2,75 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request; 
-use DB; 
-use Carbon\Carbon; 
-use App\Models\User; 
-use Mail; 
-use Hash;
-use Illuminate\Support\Str;
+use App\Models\User;
 use App\Models\password_resets;
 use App\Mail\ResetPasswordMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ForgotPasswordController extends Controller
 {
     public function forgot_password()
     {
-       return view('auth.forgot-password');
+        return view('auth.forgot-password');
     }
 
     public function forgot_password_action(Request $request)
     {
-        $customMessage = [
-            'email.required' => 'Email tidak boleh kosong',
-            'email.email' => 'Email tidak valid',
-            'email.exists' => 'Email tidak terdaftar di database',
-        ];
-    
         $request->validate([
-            'email' => 'required|email|exists:users,email'
-        ], $customMessage);
-    
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $email = $request->email;
         $token = Str::random(60);
-    
-        password_resets::updateOrCreate(
-            [
-                'email' => $request->email
-            ],
-            [
-                'email' => $request->email,
-                'token' => $token,
-                'created_at' => now(),
-            ]
-        );
-    
-        Mail::to($request->email)->send(new ResetPasswordMail($token));
-    
-        return redirect()->route('forgot-password')->with('success', 'Kami telah mengirimkan link reset password ke email anda');
-    }
-    
-    
 
-    public function reset_password(Request $request, $token)
-{
-    $getToken = password_resets::where('token', $token)->first();
+        DB::table('password_resets')->insert([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
 
-    if (!$getToken) {
-        return redirect()->route('login')->with('failed', 'Token tidak valid');
+        Mail::to($email)->send(new ResetPasswordMail($token));
+
+        return back()->with('success', 'Link reset password telah dikirim ke email Anda.');
     }
 
-    return view('auth.forgot-password-link', compact('token'));
-}
-
-public function reset_password_action(Request $request)
-{
-    $customMessage = [
-        'password.required' => 'Password tidak boleh kosong',
-        'password.min' => 'Password minimal 6 karakter',
-    ];
-
-    $request->validate([
-        'password' => 'required|min:8'
-    ], $customMessage);
-
-    $token = password_resets::where('token', $request->token)->first();
-
-    if (!$token) {
-        return redirect()->route('login')->with('failed', 'Token tidak valid');
+    public function reset_password($token)
+    {
+        return view('auth.forgot-password-link', ['token' => $token]);
     }
 
-    $user = User::where('email', $token->email)->first();
+    public function reset_password_action(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
 
-    if (!$user) {
-        return redirect()->route('login')->with('failed', 'Email tidak terdaftar di database');
+        $tokenData = DB::table('password_resets')
+            ->where('token', $request->token)
+            ->first();
+
+        if (!$tokenData) {
+            return back()->with('error', 'Token tidak valid atau telah kedaluwarsa.');
+        }
+
+        $user = User::where('email', $tokenData->email)->first();
+
+        if (!$user) {
+            return back()->with('error', 'Email tidak ditemukan.');
+        }
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+
+        DB::table('password_resets')->where('email', $user->email)->delete();
+
+        return back()->with('success', 'Kata sandi Anda telah berhasil direset.');
     }
-
-    $user->update([
-        'password' => Hash::make($request->password)
-    ]);
-
-    $token->delete();
-
-    return redirect()->route('login')->with('success', 'Password berhasil direset');
-}
-
 }

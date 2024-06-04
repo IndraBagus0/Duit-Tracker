@@ -38,6 +38,8 @@ Route::post('/forgot_password-action', [ForgotPasswordController::class, 'forgot
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset_password'])->name('reset-password');
 Route::post('/reset-password-action', [ForgotPasswordController::class, 'reset_password_action'])->name('reset-password-action');
 
+
+
 //session
 Route::get('/redirect', [RedirectController::class, 'cek'])->name('redirect');
 
