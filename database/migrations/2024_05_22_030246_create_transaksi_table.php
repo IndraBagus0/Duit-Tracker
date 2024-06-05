@@ -12,7 +12,7 @@ class CreateTransaksiTable extends Migration
             $table->id('id_transaksi');
             $table->date('tanggal_transaksi');
             $table->bigInteger('nominal_transaksi');
-            $table->text('catatan_transaksi');
+            $table->text('catatan_transaksi')->nullable();
             $table->string('jenis_transaksi', 20);
             $table->unsignedBigInteger('id_kategori');
             $table->unsignedBigInteger('id_user');
