@@ -18,21 +18,29 @@
                 </div>
             </div>
         </div>
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible show fade" role="alert">
+                <i class="bi bi-check-circle"></i> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <section class="section">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title"><i class="bi bi-cash-coin"></i> Tambah Pengeluaran</h4>
                 </div>
                 <div class="card-body">
-                    <form class="form form-vertical">
+                    <form class="form form-vertical" action="{{ route('saveOutcome') }}" method="POST">
+                        @csrf
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group has-icon-left">
                                         <label for="date-name-icon">Tanggal</label>
                                         <div class="position-relative">
-                                            <input type="text" class="form-control flatpickr-no-config flatpickr-input"
-                                                placeholder="Pilih Tanggal" id="date-name-icon">
+                                            <input type="date" class="form-control flatpickr-no-config flatpickr-input"
+                                                name="tanggal_transaksi" placeholder="Pilih Tanggal" id="date-name-icon"
+                                                required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-calendar-event"></i>
                                             </div>
@@ -43,8 +51,8 @@
                                     <div class="form-group has-icon-left">
                                         <label for="nominal-id-icon">Nominal</label>
                                         <div class="position-relative">
-                                            <input type="number" class="form-control" placeholder="Masukan Nominal"
-                                                id="nominal-id-icon">
+                                            <input type="number" class="form-control" name="nominal_transaksi"
+                                                placeholder="Masukan Nominal" id="nominal-id-icon" required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-cash-coin"></i>
                                             </div>
@@ -56,11 +64,12 @@
                                         <label for="kategori-id-icon">Kategori</label>
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="kategori-transaksi">Opsi</label>
-                                            <select class="form-select" id="kategori-transaksi">
-                                                <option selected="">Pilih Kategori yang Tersedia...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                            <select class="form-select" name="id_kategori" id="kategori-transaksi" required>
+                                                <option selected disabled>Pilih Kategori yang Tersedia...</option>
+                                                @foreach ($kategori as $index => $item)
+                                                    <option value="{{ $item->id_kategori }}">
+                                                        {{ $item->nama_kategori }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -69,7 +78,7 @@
                                     <div class="form-group has-icon-left">
                                         <label for="note-id-icon">Catatan</label>
                                         <div class="position-relative">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name="catatan_transaksi"
                                                 placeholder="Masukan Catatan (tidak wajib)" id="note-id-icon">
                                             <div class="form-control-icon">
                                                 <i class="bi bi-card-text"></i>
@@ -83,6 +92,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" name="jenis_transaksi" value="Pengeluaran">
+                        <input type="hidden" name="id_user" value="{{ Auth::id() }}">
                     </form>
                 </div>
             </div>

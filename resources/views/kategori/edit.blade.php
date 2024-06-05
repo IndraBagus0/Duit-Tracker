@@ -23,25 +23,37 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
             </div>
         </div>
+
 
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                <form action="{{ route('updateKategori', ['id_kategori' => $kategori->id_kategori]) }}" method="POST">
+                <form class="form" action="{{ route('updateKategori', ['id_kategori' => $kategori->id_kategori]) }}" method="POST" data-parsley-validate>
                         @csrf
                    
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="nama_kategori">Nama Kategori</label>
-                                    <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="{{ $kategori->nama_kategori }}" placeholder="Masukkan nama kategori" required>
+                                <div class="form-group mandatory">
+                                    <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                                    <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" value="{{ $kategori->nama_kategori }}" placeholder="Masukkan nama kategori" data-parsley-required="true">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="keterangan_kategori">Keterangan Kategori</label>
-                                    <textarea class="form-control" id="keterangan_kategori" name="keterangan_kategori" placeholder="Masukkan keterangan kategori">{{ $kategori->keterangan_kategori }}</textarea>
+                                <div class="form-group mandatory">
+                                    <label for="keterangan_kategori" class="form-label">Keterangan Kategori</label>
+                                    <textarea class="form-control" id="keterangan_kategori" name="keterangan_kategori" placeholder="Masukkan keterangan kategori" data-parsley-required="true">{{ $kategori->keterangan_kategori }}</textarea>
                                 </div>
 
                                 <div class="form-group text-end mt-3 mb-0">

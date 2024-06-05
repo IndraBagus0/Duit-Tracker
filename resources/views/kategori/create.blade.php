@@ -23,33 +23,46 @@
                 <a href="/kategori" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
             </div>
         </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
     </div>
+
 </div>
 
 <section class="section">
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('storeKategori') }}" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label for="nama_kategori">Nama Kategori</label>
-                            <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Masukkan nama kategori" required>
-                        </div>
+        <form class="form" action="{{ route('storeKategori') }}" method="POST">
+    @csrf
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group mandatory">
+                <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Masukkan nama kategori" data-parsley-required="true">
+            </div>
 
-                        <div class="form-group">
-                            <label for="keterangan_kategori">Keterangan Kategori</label>
-                            <textarea class="form-control" id="keterangan_kategori" name="keterangan_kategori" placeholder="Masukkan keterangan kategori"></textarea>
-                        </div>
+            <div class="form-group mandatory">
+                <label for="keterangan_kategori" class="form-label">Keterangan Kategori</label>
+                <textarea class="form-control" id="keterangan_kategori" name="keterangan_kategori" placeholder="Masukkan keterangan kategori" data-parsley-required="true"></textarea>
+            </div>
 
-                        <div class="form-group text-end mt-3 mb-0">
-                            <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <div class="form-group text-end mt-3 mb-0">
+                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </div>
+    </div>
+</form>
+
         </div>
     </div>
 </section>

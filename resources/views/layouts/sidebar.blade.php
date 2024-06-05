@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
+                    <a href="index.html"><img src="{{asset('template/assets/images/logo/logo.svg')}}" alt="Logo" srcset=""></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -39,55 +39,72 @@
             </div>
         </div>
         <div class="sidebar-menu">
-            <ul class="menu">
+        <ul class="menu">
+    <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
+        <a href="/dashboard" class='sidebar-link'>
+            <i class="bi bi-grid-fill"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
 
-                <li class="sidebar-item {{ Request::is('dahboard*') ? 'active' : '' }} ">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
+    @if (auth()->user()->id_role == 1)
+        <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
+            <a href="/kategori" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>Data Kategori</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item {{ Request::is('user*') ? 'active' : '' }}">
+            <a href="/users" class='sidebar-link'>
+                <i class="bi bi-person-circle"></i>
+                <span>Data User</span>
+            </a>
+        </li>
+    @else
+        <li class="sidebar-item has-sub {{ Request::is('transaksi*') ? 'active' : '' }}">
+            <a href="" class='sidebar-link'>
+                <i class="bi bi-wallet2"></i>
+                <span>Data Transaksi</span>
+            </a>
+            <ul class="submenu {{ Request::is('transaksi*') ? 'active submenu-open' : '' }}" style="--submenu-height: 86px;">
+                <li class="submenu-item {{ Request::routeIs('pendapatan') ? 'active' : '' }}">
+                    <a href="{{ route('pendapatan') }}" class="submenu-link">Pendapatan</a>
                 </li>
-
-                <li class="sidebar-item  {{ Request::is('kategori*') ? 'active' : '' }}">
-                    <a href="/kategori" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>Data Kategori</span>
-                    </a>
+                <li class="submenu-item {{ Request::routeIs('pengeluaran') ? 'active' : '' }}">
+                    <a href="{{ route('pengeluaran') }}" class="submenu-link">Pengeluaran</a>
                 </li>
-
-
-                <li class="sidebar-item has-sub {{ Request::is('transaksi*') ? 'active' : '' }}">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-wallet2"></i>
-                        <span>Data Transaksi</span>
-                    </a>
-                    <ul class="submenu {{ Request::is('transaksi*') ? 'active submenu-open' : '' }}"
-                        style="--submenu-height: 86px;">
-                        <li class="submenu-item {{ Request::routeIs('pendapatan') ? 'active' : '' }}">
-                            <a href="{{ route('pendapatan') }}" class="submenu-link">Pendapatan</a>
-                        </li>
-                        <li class="submenu-item {{ Request::routeIs('pengeluaran') ? 'active' : '' }}">
-                            <a href="{{ route('pengeluaran') }}" class="submenu-link">Pengeluaran</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <li class="sidebar-item  {{ Request::is('laporan*') ? 'active' : '' }}">
-                    <a href="/laporan" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Data Laporan</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item  {{ Request::is('user*') ? 'active' : '' }}">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-person-circle"></i>
-                        <span>Data User</span>
-                    </a>
-                </li>
-
             </ul>
-        </div>
+        </li>
+
+        <li class="sidebar-item {{ Request::is('laporan*') ? 'active' : '' }}">
+            <a href="/laporan" class='sidebar-link'>
+                <i class="bi bi-file-earmark-medical-fill"></i>
+                <span>Data Laporan</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
+            <a href="/profil" class='sidebar-link'>
+                <i class="bi bi-person-circle"></i>
+                <span>Profil Saya</span>
+            </a>
+        </li>
+
+    @endif
+
+    <li class="sidebar-item">
+        <form action="/logout" method="post" class='sidebar-link'>
+            @csrf
+            <button class="sidebar-link" type="submit" style="padding: 0; border: none; background: none; text-align: left;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </li>
+
+
+</ul>
+
     </div>
 </div>
