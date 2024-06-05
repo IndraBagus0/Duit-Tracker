@@ -65,11 +65,13 @@
                                                 <td class="text-bold-500">{{ 'Rp ' . number_format($user->saldo, 0, ',', '.') }}</td>
                                                 <td class="text-bold-500">
                                                     @if($user->id_role == 1)
-                                                    Admin
+                                                    <span class="badge bg-info">Admin</span>
                                                     @elseif($user->id_role == 2)
-                                                    User
+                                                    <span class="badge bg-primary">Free</span>
                                                     @elseif($user->id_role == 3)
-                                                    Premium
+                                                    <span class="badge bg-success">Premium</span>
+                                                    @elseif($user->id_role == 4)
+                                                    <span class="badge bg-warning">Upgrade Member</span>
                                                     @endif
                                                 </td>
                                                 <td>

@@ -38,38 +38,51 @@
         <section class="section">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('updateUser', ['id' => $user->id]) }}" method="POST">
-                        @csrf
+                <form action="{{ route('updateUser', ['id' => $user->id]) }}" method="POST">
+                    @csrf
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group mandatory">
-                                    <label for="name" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Masukkan nama lengkap" data-parsley-required="true">
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mandatory">
+                                <label for="name" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" placeholder="Masukkan nama lengkap" data-parsley-required="true">
+                            </div>
 
-                                <div class="form-group mandatory">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Masukkan email" data-parsley-required="true">
-                                </div>
+                            <div class="form-group mandatory">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" placeholder="Masukkan email" data-parsley-required="true">
+                            </div>
 
-                                <div class="form-group mandatory">
-                                    <label for="no_hp" class="form-label">No HP</label>
-                                    <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
-                                </div>
+                            <div class="form-group mandatory">
+                                <label for="no_hp" class="form-label">No HP</label>
+                                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password baru (opsional)">
-                                </div>
+                            <!-- @if($user->id_role == 1)
+                            <div class="form-group">
+                                <label for="member_status" class="form-label">Status Member</label>
+                                <select class="form-select" id="member_status" name="member_status">
+                                    @if($user->id_role == 4)
+                                        <option value="Premium" {{ $user->member_status == 'Premium' ? 'selected' : '' }}>Premium</option>
+                                        <option value="Regular" {{ $user->member_status == 'Free' ? 'selected' : '' }}>Free</option>
+                                    @endif
+                                </select>
+                            </div>
+                            @endif -->
 
-                                <div class="form-group text-end mt-3 mb-0">
-                                    <button type="submit" class="btn btn-primary me-2">Update</button>
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
-                                </div>
+                            <div class="form-group">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password baru (opsional)">
+                            </div>
+
+                            <div class="form-group text-end mt-3 mb-0">
+                                <button type="submit" class="btn btn-primary me-2">Update</button>
+                                <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
+
                 </div>
             </div>
         </section>

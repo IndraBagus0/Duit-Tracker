@@ -11,6 +11,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ProfilUserController;
 
 
 
@@ -65,11 +66,16 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->name('pengeluaran');
 });
 
-Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
+Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
 
     Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
     Route::get('/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->name('pendapatan');
     Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->name('pengeluaran');
+
+    Route::get('/profil', [ProfilUserController::class, 'index'])->name('profil');
+    Route::post('/profil', [ProfilUserController::class, 'update'])->name('profil.update');
+    Route::get('/profil/upgrade', [ProfilUserController::class, 'upgrade'])->name('profil.upgrade');
+
 }); 

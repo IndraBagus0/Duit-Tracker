@@ -84,6 +84,13 @@
             </a>
         </li>
 
+        <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
+            <a href="/profil" class='sidebar-link'>
+                <i class="bi bi-person-circle"></i>
+                <span>Profil Saya</span>
+            </a>
+        </li>
+
     @endif
 
     <li class="sidebar-item">
