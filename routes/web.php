@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengingatPembayaranController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'dologin']);
@@ -32,3 +34,18 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
 Route::group(['middleware' => ['auth', 'checkrole:2']], function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
 });
+//pengingat_pembayaran
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pengingat_pembayaran', [PengingatPembayaranController::class, 'index'])->name('pengingat_pembayaran.index');
+    Route::get('/pengingat_pembayaran/create', [PengingatPembayaranController::class, 'create'])->name('pengingat_pembayaran.create');
+    Route::post('/pengingat_pembayaran', [PengingatPembayaranController::class, 'store'])->name('pengingat_pembayaran.store');
+});
+
+//dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+
