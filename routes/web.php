@@ -8,13 +8,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengingatPembayaranController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfilUserController;
-
-
-
 
 Route::get('/', function () {
     return view('index');
@@ -78,3 +77,19 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/transaksi/pengeluaran/create', [TransaksiController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');
     Route::get('/transaksi/kategori', [KategoriController::class, 'index'])->name('idKategori');
 });
+//pengingat_pembayaran
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pengingat_pembayaran', [PengingatPembayaranController::class, 'index'])->name('pengingat_pembayaran.index');
+    Route::get('/pengingat_pembayaran/create', [PengingatPembayaranController::class, 'create'])->name('pengingat_pembayaran.create');
+    Route::post('/pengingat_pembayaran', [PengingatPembayaranController::class, 'store'])->name('pengingat_pembayaran.store');
+    Route::post('/pengingat_pembayaran/markAsPaid/{id}', [PengingatPembayaranController::class, 'markAsPaid'])->name('pengingat_pembayaran.markAsPaid');
+});
+
+//dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+

@@ -26,8 +26,8 @@
                                     <input type="date" name="end_date" class="form-control me-2" value="{{ $endDate }}">
                                     <select name="jenis_transaksi" class="form-control me-2">
                                         <option value="">Jenis Transaksi</option>
-                                        <option value="pemasukan" {{ $jenisTransaksi == 'pemasukan' ? 'selected' : '' }}>Pemasukan</option>
-                                        <option value="pengeluaran" {{ $jenisTransaksi == 'pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
+                                        <option value="Pendapatan" {{ $jenisTransaksi == 'Pendapatan' ? 'selected' : '' }}>Pendapatan</option>
+                                        <option value="Pengeluaran" {{ $jenisTransaksi == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran</option>
                                     </select>
                                     <button type="submit" class="btn btn-primary me-2">Filter</button>
                                     <a href="{{ route('laporan.print', ['start_date' => $startDate, 'end_date' => $endDate, 'jenis_transaksi' => $jenisTransaksi]) }}" class="btn btn-secondary" target="_blank">Print</a>

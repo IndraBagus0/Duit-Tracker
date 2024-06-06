@@ -83,6 +83,13 @@
                 <span>Data Laporan</span>
             </a>
         </li>
+        
+        <li class="sidebar-item {{ Request::is('pengingat_pembayaran*') ? 'active' : '' }}">
+            <a href="/pengingat_pembayaran" class='sidebar-link'>
+                <i class="bi bi-clock"></i>
+                <span>Pengingat Pembayaran</span>
+            </a>
+        </li>
 
         <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
             <a href="/profil" class='sidebar-link'>
@@ -94,17 +101,35 @@
     @endif
 
     <li class="sidebar-item">
-        <form action="/logout" method="post" class='sidebar-link'>
+        <form id="logout-form" action="/logout" method="post" class='sidebar-link'>
             @csrf
-            <button class="sidebar-link" type="submit" style="padding: 0; border: none; background: none; text-align: left;">
+            <button class="sidebar-link" type="button" onclick="confirmLogout()" style="padding: 0; border: none; background: none; text-align: left;">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Logout</span>
             </button>
         </form>
     </li>
+    
 
 
 </ul>
 
     </div>
 </div>
+<script>
+    function confirmLogout() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, logout!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        });
+    }
+</script>
