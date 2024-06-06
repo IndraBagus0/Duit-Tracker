@@ -21,20 +21,15 @@ class AuthController extends Controller
         ]);
     
         if (auth()->attempt($credentials)) {
-            // buat ulang session login
             $request->session()->regenerate();
     
             if (auth()->user()->id_role === 1) {
-                // jika user superadmin
+
                 return redirect()->route('admin');
             } else {
-                // jika user pegawai
                 return redirect()->route('user');
             }
         }
-    
-        // jika email atau password salah
-        // kirimkan session error
         return back()->with('error', 'email atau password salah');
     }
     
