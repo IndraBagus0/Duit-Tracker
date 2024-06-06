@@ -41,10 +41,6 @@
                             <label for="deskripsi">Deskripsi</label>
                             <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" id="status" name="status" class="form-control" required>
-                        </div>
                         <button type="submit" class="btn btn-primary">Tambah</button>
                     </form>
                 </div>

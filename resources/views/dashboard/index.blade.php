@@ -44,10 +44,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Pemasukan Bulanan</h4>
+                            <h4>Pendapatan dan Pengeluaran Bulanan</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="pemasukanChart"></canvas>
+                            <canvas id="pemasukanPengeluaranChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -60,20 +60,30 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const ctx = document.getElementById('pemasukanChart').getContext('2d');
+        const ctx = document.getElementById('pemasukanPengeluaranChart').getContext('2d');
         const monthlyPemasukan = @json(array_values($monthlyPemasukan));
-        
+        const monthlyPengeluaran = @json(array_values($monthlyPengeluaran));
+
         new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-                datasets: [{
-                    label: 'Pemasukan Bulanan',
-                    data: monthlyPemasukan,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
+                datasets: [
+                    {
+                        label: 'Pendapatan Bulanan',
+                        data: monthlyPemasukan,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Pengeluaran Bulanan',
+                        data: monthlyPengeluaran,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
             },
             options: {
                 scales: {

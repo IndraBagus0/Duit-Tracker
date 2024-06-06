@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pengingat_pembayaran', [PengingatPembayaranController::class, 'index'])->name('pengingat_pembayaran.index');
     Route::get('/pengingat_pembayaran/create', [PengingatPembayaranController::class, 'create'])->name('pengingat_pembayaran.create');
     Route::post('/pengingat_pembayaran', [PengingatPembayaranController::class, 'store'])->name('pengingat_pembayaran.store');
+    Route::post('/pengingat_pembayaran/markAsPaid/{id}', [PengingatPembayaranController::class, 'markAsPaid'])->name('pengingat_pembayaran.markAsPaid');
 });
 
 //dashboard
