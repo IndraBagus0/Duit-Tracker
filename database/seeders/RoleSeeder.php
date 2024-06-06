@@ -13,6 +13,7 @@ class RoleSeeder extends Seeder
             ['nama_role' => 'admin'],
             ['nama_role' => 'user'],
             ['nama_role' => 'premium'],
+            ['nama_role' => 'upgrade'],
         ]);
     }
 }
