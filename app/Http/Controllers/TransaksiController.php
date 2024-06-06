@@ -47,7 +47,16 @@ class TransaksiController extends Controller
             'id_kategori' => 'required|exists:kategori,id_kategori',
         ]);
 
-        $user_id = auth()->id();
+        $user = Auth::user();
+        $user_id = $user->id;
+        $user_role = $user->id_role;
+
+        if (in_array($user_role, [2, 4])) {
+            $transaksi_count = Transaksi::where('id_user', $user_id)->count();
+            if ($transaksi_count >= 5) {
+                return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 data.');
+            }
+        }
 
         $transaksi = new Transaksi();
         $transaksi->tanggal_transaksi = $request->tanggal_transaksi;
