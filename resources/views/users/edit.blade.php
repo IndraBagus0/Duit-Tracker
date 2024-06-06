@@ -58,17 +58,17 @@
                                 <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->no_hp }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
                             </div>
 
-                            <!-- @if($user->id_role == 1)
+                        
                             <div class="form-group">
                                 <label for="member_status" class="form-label">Status Member</label>
                                 <select class="form-select" id="member_status" name="member_status">
-                                    @if($user->id_role == 4)
+                                  
                                         <option value="Premium" {{ $user->member_status == 'Premium' ? 'selected' : '' }}>Premium</option>
                                         <option value="Regular" {{ $user->member_status == 'Free' ? 'selected' : '' }}>Free</option>
-                                    @endif
+                                   
                                 </select>
                             </div>
-                            @endif -->
+                        
 
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
