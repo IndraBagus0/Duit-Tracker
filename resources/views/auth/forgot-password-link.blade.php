@@ -34,10 +34,10 @@
                             <div id="password-match-status" class="mt-1"></div>
                         </div>
 
-                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Reset Password</button>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Ganti Password</button>
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class='text-gray-600'>Sudah ingat password? <a href="{{ route('login') }}" class="font-bold">Masuk</a>.</p>
+                        <p class='text-gray-600'>Ingat Kata Sandi? <a href="{{ route('login') }}" class="font-bold">Masuk</a>.</p>
                     </div>
                 </div>
             </div>
