@@ -31,6 +31,8 @@ class LaporanController extends Controller
         $totalPengeluaran = $transaksi->where('jenis_transaksi', 'pengeluaran')->sum('nominal_transaksi');
 
         return view('laporan.index', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran','jenisTransaksi',));
+        //bulanan
+        
     }
 
     public function print(Request $request)
