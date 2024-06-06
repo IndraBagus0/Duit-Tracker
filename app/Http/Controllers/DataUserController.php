@@ -84,6 +84,7 @@ class DataUserController extends Controller
                 'name' => 'required|string|max:255|min:5',
                 'email' => 'required|string|email|max:255',
                 'no_hp' => 'required|string|max:15',
+                'member_status' => 'nullable|string',
                 // Validasi password hanya jika diisi
                 'password' => 'nullable|string|min:8',
             ],
@@ -115,6 +116,7 @@ class DataUserController extends Controller
             // Update data user kecuali password jika kosong
             $user->name = $validatedData['name'];
             $user->email = $validatedData['email'];
+            $user->id_role = $validatedData['member_status'];
             $user->no_hp = $validatedData['no_hp'];
 
             if (!empty($validatedData['password'])) {
