@@ -2999,8 +2999,8 @@ textarea.form-control-lg {
 
 .btn-warning {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #EE7B11;
-  --bs-btn-border-color: #EE7B11;
+  --bs-btn-bg: #435ebe;
+  --bs-btn-border-color: #435ebe;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #ca690e;
   --bs-btn-hover-border-color: #be620e;
@@ -3010,8 +3010,8 @@ textarea.form-control-lg {
   --bs-btn-active-border-color: #b35c0d;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #EE7B11;
-  --bs-btn-disabled-border-color: #EE7B11;
+  --bs-btn-disabled-bg: #435ebe;
+  --bs-btn-disabled-border-color: #435ebe;
 }
 
 .btn-outline-primary {
@@ -10858,18 +10858,6 @@ textarea.form-control-lg {
   background-color: #F9F9FB;
   left: 0;
   top: 0;
-}
-.hero-banner::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: 0;
-  width: 35%;
-  height: 100%;
-  background-size: cover;
-  background-image: url(../../assets/images/hero/right-background.svg);
-  background-repeat: no-repeat;
-  z-index: -1;
 }
 .hero-banner .left-hero-color {
   padding-top: 250px;

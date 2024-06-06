@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sasscandy</title>
+    <title>Duit Tracker</title>
     <link rel="stylesheet" href="{{ asset('LandingPage/assets/libs/OwlCarousel-2/dist/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ asset('LandingPage/dist/css/iconfont/tabler-icons.css')}}">
     <link rel="stylesheet" href="{{ asset('LandingPage/dist/css/style.css')}}">
@@ -26,13 +26,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">                                             
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link text-capitalize" aria-current="page" href="#services">Services</a>
+                                    <a class="nav-link text-capitalize" href="#">Tentang</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-capitalize" href="#">Pricing</a>
+                                    <a class="nav-link text-capitalize" aria-current="page" href="#services">Layanan</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-capitalize" href="#">Pricing </a>
+                                    <a class="nav-link text-capitalize" href="#">Harga</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-capitalize" href="#">Elements </a>
@@ -43,11 +43,6 @@
                             </ul>
                             <div class="d-flex align-items-center">
                                 <a class="btn btn-warning btn-hover-secondery text-capitalize " href="/login">Login</a>
-                                <div class="input-group  search">
-                                    <button class="btn border-0 p-0" type="button" id="button-addon1"><i class="ti ti-search text-white"></i></button>
-                                    <input type="text" class="form-control border-0 bg-transparent ps-2" placeholder="search" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                </div>
-                                <a class="btn btn-warning btn-hover-secondery text-capitalize " href="/register">register</a>
                             </div>
                     </div>
                 </nav>
@@ -340,41 +335,6 @@
                                     <i class="ti ti-circle-check fs-4 pe-2"></i>
                                     <span class="fs-7 text-black">Unlimited Shared Pipelines</span>
                                 </li>
-                            </ul>
-                        </div>
-                        <div class="card-action text-center pb-xxl-5 pb-xl-5 pb-lg-5 pb-md-4 pb-sm-4 pb-4">
-                            <a href="#" class="btn btn-warning btn-hover-secondery text-capitalize">Set Started</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="card position-relative shadow border-0 h-100">
-                        <div class="card-body pb-4">
-                            <small class="fs-7 d-block text-warning text-center">Enterprise</small>
-                            <h2 class="mb-4 text-center position-relative"><sub class="fs-2 text-black">99</sub><sup class="fs-6 position-absolute">$</sup></h2>
-                            <small class="fs-7 d-block text-center">Free</small>
-                            <p class="fs-7 text-center fw-500">For individuals looking for a simple CRM solution</p>
-                            <ul class="list-unstyled mb-0 pl-0">
-                                <li class="d-flex align-items-start">
-                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
-                                    <span class="fs-7 text-black">Basic CRM features</span>
-                                </li>
-                                <li class="d-flex align-items-start">
-                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
-                                    <span class="fs-7 text-black">Unlimited Personal Pipelines</span>
-                                </li>
-                                <li class="d-flex align-items-start">
-                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
-                                    <span class="fs-7 text-black">Email Power Tools</span>
-                                </li>
-                                <li class="d-flex align-items-start">
-                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
-                                    <span class="fs-7 text-black">Unlimited Shared Pipelines</span>
-                                </li>
-                                <li class="d-flex align-items-start">
-                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
-                                    <span class="fs-7 text-black"> Full API Access</span>
-                                </li>               
                             </ul>
                         </div>
                         <div class="card-action text-center pb-xxl-5 pb-xl-5 pb-lg-5 pb-md-4 pb-sm-4 pb-4">

@@ -11,7 +11,7 @@
                 <a href="/"><img src="{{asset ('template/assets/images/logo/logo.svg')}}" alt="Logo"></a>
             </div>
             <h1 class="auth-title">Masuk</h1>
-            <p class="auth-subtitle mb-5">Masuk dengan data Anda yang Anda masukkan saat pendaftaran.</p>
+            <p class="auth-subtitle mb-5">Masuk dengan akun yang anda masukkan saat mendaftar.</p>
             @if (session()->has('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('error') }}
@@ -47,7 +47,7 @@
             </>
             <div class="text-center mt-5 text-lg fs-4">
                 <p class="text-gray-600">Belum punya akun? <a href="/register" class="font-bold">Buat Akun?</a></p>
-                <p><a class="font-bold" href="/forgot-password">Lupa Password ?</a></p>
+                <p><a class="font-bold" href="/forgot-password">Lupa Kata Sandi ?</a></p>
             </div>
         </div>
     </div>

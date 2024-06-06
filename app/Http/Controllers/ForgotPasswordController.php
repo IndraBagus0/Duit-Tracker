@@ -22,10 +22,16 @@ class ForgotPasswordController extends Controller
     public function forgot_password_action(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
         ]);
 
         $email = $request->email;
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return back()->with('error', 'Email tidak terdaftar.');
+        }
+
         $token = Str::random(60);
 
         DB::table('password_resets')->insert([
@@ -68,9 +74,8 @@ class ForgotPasswordController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-
         DB::table('password_resets')->where('email', $user->email)->delete();
 
-        return back()->with('success', 'Kata sandi Anda telah berhasil direset.');
+        return redirect()->route('login')->with('success', 'Kata sandi Anda telah berhasil direset.');
     }
 }
