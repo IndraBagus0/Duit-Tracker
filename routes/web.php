@@ -8,18 +8,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\LaporanController;
-<<<<<<< HEAD
 use App\Http\Controllers\PengingatPembayaranController;
 use App\Http\Controllers\DashboardController;
-=======
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfilUserController;
->>>>>>> 946f7a2cf84faf1e2f3b083d76250ff5f0681fdd
-
-
-
 
 Route::get('/', function () {
     return view('index');

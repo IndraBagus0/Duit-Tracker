@@ -83,6 +83,13 @@
                 <span>Data Laporan</span>
             </a>
         </li>
+        
+        <li class="sidebar-item {{ Request::is('pengingat_pembayaran*') ? 'active' : '' }}">
+            <a href="/pengingat_pembayaran" class='sidebar-link'>
+                <i class="bi bi-clock"></i>
+                <span>Pengingat Pembayaran</span>
+            </a>
+        </li>
 
         <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
             <a href="/profil" class='sidebar-link'>
