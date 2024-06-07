@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
-    public function pendapatan()
+    public function pemasukan()
     {
         $kategori = Kategori::all();
         return view('transaction.income', compact('kategori'));
@@ -26,7 +26,7 @@ class TransactionController extends Controller
     {
         $kategori = Kategori::all();
 
-        if ($type == 'pendapatan') {
+        if ($type == 'pemasukan') {
             return view('transaction.income', compact('kategori'));
         } elseif ($type == 'pengeluaran') {
             return view('transaction.outcome', compact('kategori'));
@@ -44,7 +44,7 @@ class TransactionController extends Controller
             'tanggal_transaksi' => 'required|date',
             'nominal_transaksi' => 'required|numeric',
             'catatan_transaksi' => 'nullable|string',
-            'jenis_transaksi' => 'required|in:Pendapatan,Pengeluaran',
+            'jenis_transaksi' => 'required|in:Pemasukan,Pengeluaran',
             'id_kategori' => 'required|exists:kategori,id_kategori',
         ]);
 
@@ -72,7 +72,7 @@ class TransactionController extends Controller
         // Logging for successful save
         Log::info('Transaksi saved:', $transaksi->toArray());
 
-        if ($request->jenis_transaksi == 'Pendapatan') {
+        if ($request->jenis_transaksi == 'Pemasukan') {
             $redirect_route = 'createIncome';
         } else {
             $redirect_route = 'createOutcome';

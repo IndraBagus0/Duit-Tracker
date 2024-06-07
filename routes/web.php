@@ -69,9 +69,9 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/profil', [ProfilUserController::class, 'index'])->name('profil');
     Route::post('/profil', [ProfilUserController::class, 'update'])->name('profil.update');
     Route::get('/profil/upgrade', [ProfilUserController::class, 'upgrade'])->name('profil.upgrade');
-    Route::get('/transaksi/pendapatan', [TransactionController::class, 'pendapatan'])->name('pendapatan');
-    Route::get('/transaksi/pendapatan/create', [TransactionController::class, 'create'])->name('createIncome')->defaults('type', 'pendapatan');
-    Route::post('/transaksi/pendapatan', [TransactionController::class, 'store'])->name('saveIncome');
+    Route::get('/transaksi/pemasukan', [TransactionController::class, 'pemasukan'])->name('pemasukan');
+    Route::get('/transaksi/pemasukan/create', [TransactionController::class, 'create'])->name('createIncome')->defaults('type', 'pemasukan');
+    Route::post('/transaksi/pemasukan', [TransactionController::class, 'store'])->name('saveIncome');
     Route::get('/transaksi/pengeluaran', [TransactionController::class, 'pengeluaran'])->name('pengeluaran');
     Route::post('/transaksi/pengeluaran', [TransactionController::class, 'store'])->name('saveOutcome');
     Route::get('/transaksi/pengeluaran/create', [TransactionController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');

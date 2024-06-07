@@ -12,7 +12,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                             <li class="breadcrumb-item">Data Transaksi</li>
-                            <li class="breadcrumb-item active" aria-current="page">Pendapatan</li>
+                            <li class="breadcrumb-item active" aria-current="page">Pemasukan</li>
                         </ol>
                     </nav>
                 </div>
@@ -36,7 +36,7 @@
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"><i class="bi bi-cash-coin"></i> Tambah Pendapatan</h4>
+                    <h4 class="card-title"><i class="bi bi-cash-coin"></i> Tambah Pemasukan</h4>
                 </div>
                 <div class="card-body">
                     <form class="form form-vertical" action="{{ route('saveIncome') }}" method="POST">
@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="jenis_transaksi" value="Pendapatan">
+                        <input type="hidden" name="jenis_transaksi" value="Pemasukan">
                         <input type="hidden" name="id_user" value="{{ Auth::id() }}">
                     </form>
                 </div>
