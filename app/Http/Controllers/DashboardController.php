@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PengingatPembayaran;
-use App\Models\Transaksi;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $user_id = Auth::id();
 
         // Group by month and sum the nominal for pemasukan
-        $pemasukan = Transaksi::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
+        $pemasukan = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
             ->where('id_user', $user_id)
             ->where('jenis_transaksi', 'Pendapatan')
             ->groupBy('month')
@@ -23,7 +23,7 @@ class DashboardController extends Controller
             ->toArray();
 
         // Group by month and sum the nominal for pengeluaran
-        $pengeluaran = Transaksi::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
+        $pengeluaran = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
             ->where('id_user', $user_id)
             ->where('jenis_transaksi', 'Pengeluaran')
             ->groupBy('month')

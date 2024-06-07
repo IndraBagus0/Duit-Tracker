@@ -19,6 +19,6 @@ class Kategori extends Model
     ];
     public function transaksi()
     {
-        return $this->hasMany(Transaksi::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Transaction::class, 'id_kategori', 'id_kategori');
     }
 }

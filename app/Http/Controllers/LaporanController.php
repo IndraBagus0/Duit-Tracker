@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -26,10 +26,10 @@ class LaporanController extends Controller
                 return redirect()->back()->with('error', 'Harap Masukan Rentang Waktu');
             }
 
-            $query = Transaksi::where('id_user', Auth::user()->id)
+            $query = Transaction::where('id_user', Auth::user()->id)
                 ->whereBetween('tanggal_transaksi', [$startDate, $endDate]);
         } else {
-            $query = Transaksi::where('id_user', Auth::user()->id);
+            $query = Transaction::where('id_user', Auth::user()->id);
         }
 
         if ($jenisTransaksi) {
@@ -55,7 +55,7 @@ class LaporanController extends Controller
         $jenisTransaksi = $request->input('jenis_transaksi');
         $user = Auth::user();
 
-        $query = Transaksi::where('id_user', $user->id);
+        $query = Transaction::where('id_user', $user->id);
 
         if ($startDate && $endDate) {
             $query->whereBetween('tanggal_transaksi', [$startDate->startOfDay(), $endDate->endOfDay()]);

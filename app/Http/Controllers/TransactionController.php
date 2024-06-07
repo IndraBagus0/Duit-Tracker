@@ -1,24 +1,25 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
+use App\Models\Transaction;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class TransaksiController extends Controller
+class TransactionController extends Controller
 {
     public function pendapatan()
     {
         $kategori = Kategori::all();
-        return view('transaksi.pendapatan', compact('kategori'));
+        return view('transaction.income', compact('kategori'));
     }
 
     public function pengeluaran()
     {
         $kategori = Kategori::all();
-        return view('transaksi.pengeluaran', compact('kategori'));
+        return view('transaction.outcome', compact('kategori'));
     }
 
     public function create($type)
@@ -26,9 +27,9 @@ class TransaksiController extends Controller
         $kategori = Kategori::all();
 
         if ($type == 'pendapatan') {
-            return view('transaksi.pendapatan', compact('kategori'));
+            return view('transaction.income', compact('kategori'));
         } elseif ($type == 'pengeluaran') {
-            return view('transaksi.pengeluaran', compact('kategori'));
+            return view('transaction.outcome', compact('kategori'));
         } else {
             abort(404);
         }
@@ -52,13 +53,13 @@ class TransaksiController extends Controller
         $user_role = $user->id_role;
 
         if (in_array($user_role, [2, 4])) {
-            $transaksi_count = Transaksi::where('id_user', $user_id)->count();
+            $transaksi_count = Transaction::where('id_user', $user_id)->count();
             if ($transaksi_count >= 5) {
                 return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 data.');
             }
         }
 
-        $transaksi = new Transaksi();
+        $transaksi = new Transaction();
         $transaksi->tanggal_transaksi = $request->tanggal_transaksi;
         $transaksi->nominal_transaksi = $request->nominal_transaksi;
         $transaksi->catatan_transaksi = $request->catatan_transaksi;

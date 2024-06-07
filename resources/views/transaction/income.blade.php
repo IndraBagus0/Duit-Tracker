@@ -1,4 +1,4 @@
-@extends('transaksi.index')
+@extends('transaction.index')
 
 @section('transaction-content')
     <div class="page-heading">

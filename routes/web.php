@@ -11,7 +11,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PengingatPembayaranController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfilUserController;
 
@@ -69,12 +69,12 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/profil', [ProfilUserController::class, 'index'])->name('profil');
     Route::post('/profil', [ProfilUserController::class, 'update'])->name('profil.update');
     Route::get('/profil/upgrade', [ProfilUserController::class, 'upgrade'])->name('profil.upgrade');
-    Route::get('/transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->name('pendapatan');
-    Route::get('/transaksi/pendapatan/create', [TransaksiController::class, 'create'])->name('createIncome')->defaults('type', 'pendapatan');
-    Route::post('/transaksi/pendapatan', [TransaksiController::class, 'store'])->name('saveIncome');
-    Route::get('/transaksi/pengeluaran', [TransaksiController::class, 'pengeluaran'])->name('pengeluaran');
-    Route::post('/transaksi/pengeluaran', [TransaksiController::class, 'store'])->name('saveOutcome');
-    Route::get('/transaksi/pengeluaran/create', [TransaksiController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');
+    Route::get('/transaksi/pendapatan', [TransactionController::class, 'pendapatan'])->name('pendapatan');
+    Route::get('/transaksi/pendapatan/create', [TransactionController::class, 'create'])->name('createIncome')->defaults('type', 'pendapatan');
+    Route::post('/transaksi/pendapatan', [TransactionController::class, 'store'])->name('saveIncome');
+    Route::get('/transaksi/pengeluaran', [TransactionController::class, 'pengeluaran'])->name('pengeluaran');
+    Route::post('/transaksi/pengeluaran', [TransactionController::class, 'store'])->name('saveOutcome');
+    Route::get('/transaksi/pengeluaran/create', [TransactionController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');
     Route::get('/transaksi/kategori', [KategoriController::class, 'index'])->name('idKategori');
 });
 //pengingat_pembayaran
@@ -90,6 +90,3 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-
-
