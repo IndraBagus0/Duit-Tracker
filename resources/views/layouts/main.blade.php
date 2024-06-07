@@ -55,6 +55,11 @@
     {{-- Date Format Indonesia --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            flatpickr(".flatpickr-no-config", {
+                dateFormat: "j M Y",
+                altFormat: "j M Y",
+            });
+
             flatpickr(".flatpickr-range", {
                 mode: "range",
                 dateFormat: "j M Y",

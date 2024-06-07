@@ -47,7 +47,7 @@
                                     <div class="form-group has-icon-left">
                                         <label for="date-name-icon">Tanggal</label>
                                         <div class="position-relative">
-                                            <input type="date" class="form-control flatpickr-no-config flatpickr-input"
+                                            <input type="text" class="form-control flatpickr-no-config flatpickr-input"
                                                 name="tanggal_transaksi" placeholder="Pilih Tanggal" id="date-name-icon"
                                                 required>
                                             <div class="form-control-icon">
