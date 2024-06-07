@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -16,10 +15,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-    
+
     public function role()
     {
         return $this->belongsTo(Role::class, 'id_role');
     }
-    
+
+    public static function totalSaldo()
+    {
+        return static::sum('saldo');
+    }
 }
