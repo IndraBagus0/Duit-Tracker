@@ -20,6 +20,9 @@ class Transaksi extends Model
         'id_kategori',
         'id_user',
     ];
+    protected $casts = [
+        'tanggal_transaksi' => 'datetime',
+    ];
 
     public function kategori()
     {
