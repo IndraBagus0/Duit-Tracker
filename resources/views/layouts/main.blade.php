@@ -7,13 +7,12 @@
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('template/assets/css/main/app.css')}}">
-    <link rel="stylesheet" href="{{ asset('template/assets/css/main/app-dark.css')}}">
-    <link rel="stylesheet" href="{{ asset('template/assets/css/pages/auth.css')}}">
-    <link rel="shortcut icon" href="{{ asset('template/assets/images/logo/favicon.svg')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('template/assets/images/logo/favicon.png')}}" type="image/png">
-    
-    <link rel="stylesheet" href="{{ asset('template/assets/css/shared/iconly.css')}}">
+    <link rel="stylesheet" href="{{ asset('template/assets/css/main/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/css/main/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/assets/css/pages/auth.css') }}">
+    <link rel="shortcut icon" href="{{ asset('template/assets/images/logo/favicon.svg') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('template/assets/images/logo/favicon.png') }}" type="image/png">
+    <link rel="stylesheet" href="{{ asset('template/assets/css/shared/iconly.css') }}">
 
 
     <link rel="stylesheet" href="{{ asset('template/assets/css/main/app.css') }}">
@@ -50,10 +49,19 @@
     <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('template/assets/js/pages/dashboard.js') }}"></script>
     <!-- Need: Apexcharts -->
-    <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('template/assets/js/pages/dashboard.js')}}"></script>
+    <script src="{{ asset('template/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('template/assets/js/pages/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Date Format Indonesia --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            flatpickr(".flatpickr-range", {
+                mode: "range",
+                dateFormat: "j M Y",
+                altFormat: "j M Y",
+            });
+        });
+    </script>
 </body>
 
 </html>
-
