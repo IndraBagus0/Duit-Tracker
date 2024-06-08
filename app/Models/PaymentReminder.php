@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengingatPembayaran extends Model
+class PaymentReminder extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengingat_pembayaran';
-    protected $primaryKey = 'id_notif';
+    protected $table = 'tbl_paymentReminder';
+    protected $primaryKey = 'notifId';
 
     protected $fillable = [
-        'tanggal_pengingat',
+        'reminderDate',
         'nominal',
-        'deskripsi',
+        'description',
         'status',
-        'id_user',
+        'userId',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'userId');
     }
 }

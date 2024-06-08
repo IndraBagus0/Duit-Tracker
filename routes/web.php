@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\PengingatPembayaranController;
+use App\Http\Controllers\PaymentReminderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransactionController;
@@ -79,10 +79,10 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
 });
 //pengingat_pembayaran
 Route::middleware(['auth'])->group(function () {
-    Route::get('/pengingat_pembayaran', [PengingatPembayaranController::class, 'index'])->name('pengingat_pembayaran.index');
-    Route::get('/pengingat_pembayaran/create', [PengingatPembayaranController::class, 'create'])->name('pengingat_pembayaran.create');
-    Route::post('/pengingat_pembayaran', [PengingatPembayaranController::class, 'store'])->name('pengingat_pembayaran.store');
-    Route::post('/pengingat_pembayaran/markAsPaid/{id}', [PengingatPembayaranController::class, 'markAsPaid'])->name('pengingat_pembayaran.markAsPaid');
+    Route::get('/pengingat-pembayaran', [PaymentReminderController::class, 'index'])->name('paymentReminder.index');
+    Route::get('/pengingat-pembayaran/create', [PaymentReminderController::class, 'create'])->name('paymentReminder.create');
+    Route::post('/pengingat-pembayaran', [PaymentReminderController::class, 'store'])->name('paymentReminder.store');
+    Route::post('/pengingat-pembayaran/markAsPaid/{id}', [PaymentReminderController::class, 'markAsPaid'])->name('paymentReminder.markAsPaid');
 });
 
 //dashboard

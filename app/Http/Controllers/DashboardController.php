@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PengingatPembayaran;
+use App\Models\PaymentReminder;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
