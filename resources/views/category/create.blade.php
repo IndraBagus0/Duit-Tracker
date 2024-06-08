@@ -20,7 +20,7 @@
         </div>
         <div class="col-12 col-md-6 mt-md-0">
             <div class="text-md-end mb-3 mb-md-0">
-                <a href="/kategori" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
+                <a href="/category" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 <section class="section">
     <div class="card">
         <div class="card-body">
-        <form class="form" action="{{ route('storeKategori') }}" method="POST">
+        <form class="form" action="{{ route('storecategory') }}" method="POST">
     @csrf
     <div class="row">
         <div class="col-md-12">

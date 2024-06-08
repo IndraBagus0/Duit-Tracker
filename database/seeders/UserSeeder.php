@@ -10,22 +10,30 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('tbl_users')->insert([
             [
                 'name' => 'Admin User',
-                'email' => 'admin1@gmail.com',
+                'email' => 'admin@gmail.com',
                 'password' => Hash::make('password'),
-                'no_hp' => '1234567890',
-                'saldo' => '1000.00',
-                'id_role' => 1,
+                'phoneNumber' => '1234567890',
+                'accountBalance' => '1000.00',
+                'roleId' => 1,
             ],
             [
                 'name' => 'Regular User',
                 'email' => 'user1@gmail.com',
                 'password' => Hash::make('password'),
-                'no_hp' => '0987654321',
-                'saldo' => '500.00',
-                'id_role' => 2,
+                'phoneNumber' => '0987654321',
+                'accountBalance' => '500.00',
+                'roleId' => 2,
+            ],
+            [
+                'name' => 'Premium User',
+                'email' => 'user2@gmail.com',
+                'password' => Hash::make('password'),
+                'phoneNumber' => '0987654321',
+                'accountBalance' => '0',
+                'roleId' => 3,
             ],
         ]);
     }
