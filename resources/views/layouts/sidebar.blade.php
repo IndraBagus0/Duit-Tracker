@@ -48,7 +48,7 @@
                     </a>
                 </li>
 
-                @if (auth()->user()->id_role == 1)
+                @if (auth()->user()->roleId == 1)
                     <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
                         <a href="/kategori" class='sidebar-link'>
                             <i class="bi bi-stack"></i>
