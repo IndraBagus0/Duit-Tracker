@@ -55,7 +55,7 @@
 
                             <div class="form-group mandatory">
                                 <label for="no_hp" class="form-label">No HP</label>
-                                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{ $user->phoneNumber }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="{{ $user->phoneNumber }}" placeholder="Masukkan nomor HP" data-parsley-required="true">
                             </div>
 
                         
