@@ -61,7 +61,7 @@ class CategoryController extends Controller
     }
 
     // fungsi update kategori
-    public function update(Request $request, $id_kategori)
+    public function update(Request $request, $categoryId)
     {
         // Validasi data input
         $validatedData = $request->validate(
@@ -81,7 +81,7 @@ class CategoryController extends Controller
         );
 
         // Temukan kategori ID
-        $kategori = category::findOrFail($id_kategori);
+        $kategori = category::findOrFail($categoryId);
 
         // Perbarui data
         $kategori->update($validatedData);
