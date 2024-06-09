@@ -20,22 +20,22 @@ class RegisterController extends Controller
             'name' => 'required|string|max:50',
             'email' => 'required|string|email|max:30|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'no_hp' => 'required|string|max:15',
-            'saldo' => 'required|string|max:15',
+            'phoneNumber' => 'required|string|max:15',
+            'accountBalance' => 'required|string|max:15',
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Something went wrong!');
         }
 
-        $saldo = preg_replace('/[^0-9]/', '', $request->saldo);
+        $accountBalance = preg_replace('/[^0-9]/', '', $request->accountBalance);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'no_hp' => $request->no_hp,
-            'saldo' => $saldo,
+            'phoneNumber' => $request->phoneNumber,
+            'accountBalance' => $accountBalance,
             'id_role' => 2,
         ]);
 

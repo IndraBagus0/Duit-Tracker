@@ -57,15 +57,15 @@
                                         <td>{{ $item->nama_kategori }}</td>
                                         <td class="text-bold-500">{{ $item->keterangan_kategori }}</td>
                                         <td>
-                                            <a href="{{ route('editKategori', ['id_kategori' => $item->id_kategori]) }}">
+                                            <a href="{{ route('editKategori', ['id_kategori' => $item->categoryId]) }}">
                                                 <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i>
                                             </a>
 
-                                            <a href="#" onclick="deleteConfirmation({{ $item->id_kategori }})">
+                                            <a href="#" onclick="deleteConfirmation({{ $item->categoryId }})">
                                                 <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash-2"></i>
                                             </a>
 
-                                            <form id="delete-form-{{ $item->id_kategori }}" action="{{ route('deleteKategori', ['id_kategori' => $item->id_kategori]) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $item->categoryId }}" action="{{ route('deleteKategori', ['id_kategori' => $item->categoryId]) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>

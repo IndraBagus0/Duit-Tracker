@@ -9,16 +9,16 @@ class category extends Model
 {
     use HasFactory;
 
-    protected $table = 'category';
+    protected $table = 'tbl_category';
 
-    protected $primaryKey = 'category';
+    protected $primaryKey = 'tbl_category';
 
     protected $fillable = [
-        'nama_kategori',
-        'keterangan_kategori',
+        'categoryName',
+        'descriptionCategory',
     ];
     public function transaksi()
     {
-        return $this->hasMany(Transaction::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(Transaction::class, 'categoryId', 'categoryId');
     }
 }

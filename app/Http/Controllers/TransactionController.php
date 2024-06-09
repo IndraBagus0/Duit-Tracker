@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
-use App\Models\Kategori;
+use App\Models\category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -12,19 +12,19 @@ class TransactionController extends Controller
 {
     public function pemasukan()
     {
-        $kategori = Kategori::all();
+        $kategori = category::all();
         return view('transaction.income', compact('kategori'));
     }
 
     public function pengeluaran()
     {
-        $kategori = Kategori::all();
+        $kategori = category::all();
         return view('transaction.outcome', compact('kategori'));
     }
 
     public function create($type)
     {
-        $kategori = Kategori::all();
+        $kategori = category::all();
 
         if ($type == 'pemasukan') {
             return view('transaction.income', compact('kategori'));

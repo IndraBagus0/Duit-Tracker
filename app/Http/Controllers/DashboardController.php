@@ -12,11 +12,11 @@ class DashboardController extends Controller
     public function index()
     {
         // Get the ID of the logged-in user
-        $user_id = Auth::id();
+        $userId = Auth::id();
 
         // Group by month and sum the nominal for pemasukan
-        $pemasukan = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
-            ->where('id_user', $user_id)
+        $pemasukan = Transaction::selectRaw('MONTH(transactionDate) as month, SUM(transactionAmount) as total')
+            ->where('id_user', $userId)
             ->where('jenis_transaksi', 'Pendapatan')
             ->groupBy('month')
             ->pluck('total', 'month')
@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
         // Group by month and sum the nominal for pengeluaran
         $pengeluaran = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
-            ->where('id_user', $user_id)
+            ->where('id_user', $userId)
             ->where('jenis_transaksi', 'Pengeluaran')
             ->groupBy('month')
             ->pluck('total', 'month')
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         }
 
         // Get all pengingat pembayaran data for the logged-in user
-        $pengingatPembayaran = PengingatPembayaran::where('id_user', $user_id)
+        $pengingatPembayaran = PaymentReminder::where('id_user', $userId)
             ->where('status', 'unpaid')
             ->get();
 

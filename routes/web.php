@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PaymentReminderController;
@@ -45,13 +45,13 @@ Route::get('/redirect', [RedirectController::class, 'cek'])->name('redirect');
 
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::get('/kategori', [KategoriController::class, 'index'])->name('daftarKategori');
-    Route::get('/kategori/create', [KategoriController::class, 'create'])->name('createKategori');
-    Route::post('/kategori/create', [KategoriController::class, 'store'])->name('storeKategori');
-    Route::get('/kategori/{id_kategori}/edit', [KategoriController::class, 'edit'])->name('editKategori');
-    Route::post('/kategori/{id_kategori}/edit', [KategoriController::class, 'update'])->name('updateKategori');
-    Route::get('/kategori/{id_kategori}/delete', [KategoriController::class, 'destroy'])->name('deleteKategori');
-    Route::delete('/kategori/{id_kategori}/delete', [KategoriController::class, 'destroy'])->name('deleteKategori');
+    Route::get('/kategori', [CategoryController::class, 'index'])->name('daftarKategori');
+    Route::get('/kategori/create', [CategoryController::class, 'create'])->name('createKategori');
+    Route::post('/kategori/create', [CategoryController::class, 'store'])->name('storeKategori');
+    Route::get('/kategori/{id_kategori}/edit', [CategoryController::class, 'edit'])->name('editKategori');
+    Route::post('/kategori/{id_kategori}/edit', [CategoryController::class, 'update'])->name('updateKategori');
+    Route::get('/kategori/{id_kategori}/delete', [CategoryController::class, 'destroy'])->name('deleteKategori');
+    Route::delete('/kategori/{id_kategori}/delete', [CategoryController::class, 'destroy'])->name('deleteKategori');
     Route::get('/users', [DataUserController::class, 'index'])->name('daftarUser');
     Route::get('/users/create', [DataUserController::class, 'create'])->name('createUser');
     Route::post('/users/create', [DataUserController::class, 'store'])->name('storeUser');
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/transaksi/pengeluaran', [TransactionController::class, 'pengeluaran'])->name('pengeluaran');
     Route::post('/transaksi/pengeluaran', [TransactionController::class, 'store'])->name('saveOutcome');
     Route::get('/transaksi/pengeluaran/create', [TransactionController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');
-    Route::get('/transaksi/kategori', [KategoriController::class, 'index'])->name('idKategori');
+    Route::get('/transaksi/kategori', [CategoryController::class, 'index'])->name('idKategori');
 });
 //pengingat_pembayaran
 Route::middleware(['auth'])->group(function () {

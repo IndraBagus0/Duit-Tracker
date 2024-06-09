@@ -9,28 +9,28 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi';
-    protected $primaryKey = 'id_transaksi';
+    protected $table = 'tbl_transaction';
+    protected $primaryKey = 'transactionId';
 
     protected $fillable = [
-        'tanggal_transaksi',
-        'nominal_transaksi',
-        'catatan_transaksi',
-        'jenis_transaksi',
-        'id_kategori',
-        'id_user',
+        'transactionDate',
+        'transactionAmount',
+        'notesTransaction',
+        'transactionType',
+        'categoryId',
+        'userId',
     ];
     protected $casts = [
-        'tanggal_transaksi' => 'datetime',
+        'transactionDate' => 'datetime',
     ];
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
+        return $this->belongsTo(category::class, 'categoryId', 'categoryId');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'userId', 'id');
     }
 }
