@@ -27,7 +27,7 @@ class DataUserController extends Controller
         $validatedData = $request->validate(
             [
                 'name' => 'required|string|max:255|min:5',
-                'email' => 'required|string|email|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:tbl_users',
                 'phoneNumber' => 'required|string|max:15',
                 'accountBalance' => 'required|string|max:15',
                 'password' => 'required|string|min:8',
