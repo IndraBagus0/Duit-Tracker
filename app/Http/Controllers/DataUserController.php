@@ -64,7 +64,7 @@ class DataUserController extends Controller
             'email' => $request->email,
             'phoneNumber' => $request->phoneNumber,
             'accountBalance' => $request->accountBalance,
-            'id_role' => 2,
+            'roleId' => 2,
             'password' => bcrypt($request->password),
         ]);
 

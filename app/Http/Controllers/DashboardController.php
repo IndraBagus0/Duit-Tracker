@@ -23,7 +23,7 @@ class DashboardController extends Controller
             ->toArray();
 
         // Group by month and sum the nominal for pengeluaran
-        $pengeluaran = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
+        $pengeluaran = Transaction::selectRaw('MONTH(transactionDate) as month, SUM(transactionAmount) as total')
             ->where('userId', $userId)
             ->where('transactionType', 'outcome')
             ->groupBy('month')
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         }
 
         // Get all pengingat pembayaran data for the logged-in user
-        $pengingatPembayaran = PaymentReminder::where('id_user', $userId)
+        $pengingatPembayaran = PaymentReminder::where('userId', $userId)
             ->where('status', 'unpaid')
             ->get();
 
