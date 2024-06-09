@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DataUserController;
-use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PaymentReminderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
@@ -58,14 +58,14 @@ Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
     Route::get('/users/{id}/edit', [DataUserController::class, 'edit'])->name('editUser');
     Route::post('/users/{id}/edit', [DataUserController::class, 'update'])->name('updateUser');
     Route::delete('/users/{id}/delete', [DataUserController::class, 'destroy'])->name('deleteUser');
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/print', [ReportController::class, 'print'])->name('laporan.print');
 });
 
 Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
-    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
-    Route::get('/laporan/print', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/print', [ReportController::class, 'print'])->name('laporan.print');
     Route::get('/profil', [ProfilUserController::class, 'index'])->name('profil');
     Route::post('/profil', [ProfilUserController::class, 'update'])->name('profil.update');
     Route::get('/profil/upgrade', [ProfilUserController::class, 'upgrade'])->name('profil.upgrade');

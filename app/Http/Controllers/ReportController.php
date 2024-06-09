@@ -7,7 +7,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
-class LaporanController extends Controller
+class ReportController extends Controller
 {
     public function index(Request $request)
     {

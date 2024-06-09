@@ -16,16 +16,16 @@ class DashboardController extends Controller
 
         // Group by month and sum the nominal for pemasukan
         $pemasukan = Transaction::selectRaw('MONTH(transactionDate) as month, SUM(transactionAmount) as total')
-            ->where('id_user', $userId)
-            ->where('jenis_transaksi', 'Pendapatan')
+            ->where('userId', $userId)
+            ->where('transactionType', 'income')
             ->groupBy('month')
             ->pluck('total', 'month')
             ->toArray();
 
         // Group by month and sum the nominal for pengeluaran
         $pengeluaran = Transaction::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
-            ->where('id_user', $userId)
-            ->where('jenis_transaksi', 'Pengeluaran')
+            ->where('userId', $userId)
+            ->where('transactionType', 'outcome')
             ->groupBy('month')
             ->pluck('total', 'month')
             ->toArray();
