@@ -45,7 +45,7 @@
                                         <label for="date-name-icon">Tanggal</label>
                                         <div class="position-relative">
                                             <input type="date" class="form-control flatpickr-no-config flatpickr-input"
-                                                name="tanggal_transaksi" placeholder="Pilih Tanggal" id="date-name-icon"
+                                                name="transactionDate" placeholder="Pilih Tanggal" id="date-name-icon"
                                                 required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-calendar-event"></i>
@@ -57,7 +57,7 @@
                                     <div class="form-group has-icon-left">
                                         <label for="nominal-id-icon">Nominal</label>
                                         <div class="position-relative">
-                                            <input type="number" class="form-control" name="nominal_transaksi"
+                                            <input type="number" class="form-control" name="transactionAmount"
                                                 placeholder="Masukan Nominal" id="nominal-id-icon" required>
                                             <div class="form-control-icon">
                                                 <i class="bi bi-cash-coin"></i>
@@ -70,11 +70,11 @@
                                         <label for="kategori-id-icon">Kategori</label>
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="kategori-transaksi">Opsi</label>
-                                            <select class="form-select" name="id_kategori" id="kategori-transaksi" required>
+                                            <select class="form-select" name="categoryId" id="kategori-transaksi" required>
                                                 <option selected disabled>Pilih Kategori yang Tersedia...</option>
                                                 @foreach ($kategori as $index => $item)
-                                                    <option value="{{ $item->id_kategori }}">
-                                                        {{ $item->nama_kategori }}</option>
+                                                    <option value="{{ $item->categoryId }}">
+                                                        {{ $item->categoryName }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -84,7 +84,7 @@
                                     <div class="form-group has-icon-left">
                                         <label for="note-id-icon">Catatan</label>
                                         <div class="position-relative">
-                                            <input type="text" class="form-control" name="catatan_transaksi"
+                                            <input type="text" class="form-control" name="notesTransaction"
                                                 placeholder="Masukan Catatan (tidak wajib)" id="note-id-icon">
                                             <div class="form-control-icon">
                                                 <i class="bi bi-card-text"></i>
@@ -98,8 +98,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="jenis_transaksi" value="Pengeluaran">
-                        <input type="hidden" name="id_user" value="{{ Auth::id() }}">
+                        <input type="hidden" name="transactionType" value="Pengeluaran">
+                        <input type="hidden" name="userId" value="{{ Auth::id() }}">
                     </form>
                 </div>
             </div>
