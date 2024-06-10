@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
 
 class ReportController extends Controller
@@ -14,7 +15,6 @@ class ReportController extends Controller
         $user = Auth::user();
         $dateRange = $request->input('date_range');
         $jenisTransaksi = $request->input('jenis_transaksi');
-
         $startDate = null;
         $endDate = null;
         if ($dateRange) {
@@ -25,9 +25,8 @@ class ReportController extends Controller
             } else {
                 return redirect()->back()->with('error', 'Harap Masukan Rentang Waktu');
             }
-
             $query = Transaction::where('userId', Auth::user()->id)
-                ->whereBetween('tanggal_transaksi', [$startDate, $endDate]);
+                ->whereBetween('transactionDate', [$startDate, $endDate]);
         } else {
             $query = Transaction::where('userId', Auth::user()->id);
         }
@@ -39,12 +38,12 @@ class ReportController extends Controller
         $transaksi = $query->with('kategori')->get();
 
         // Menghitung total nominal berdasarkan jenis transaksi
-        $totalPemasukan = $transaksi->where('jenis_transaksi', 'Pendapatan')->sum('nominal_transaksi');
-        $totalPengeluaran = $transaksi->where('jenis_transaksi', 'Pengeluaran')->sum('nominal_transaksi');
-        $saldoAwal = $user->saldo;
-        $totalSaldo = $user->saldo + $totalPemasukan - $totalPengeluaran;
+        $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
+        $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
+        $saldoAwal = $user->accountBalance;
+        $totalSaldo = $user->accountBalance + $totalPemasukan - $totalPengeluaran;
 
-        return view('laporan.index', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
+        return view('report.index', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
     }
 
 
@@ -55,10 +54,10 @@ class ReportController extends Controller
         $jenisTransaksi = $request->input('jenis_transaksi');
         $user = Auth::user();
 
-        $query = Transaction::where('id_user', $user->id);
+        $query = Transaction::where('userId', $user->id);
 
         if ($startDate && $endDate) {
-            $query->whereBetween('tanggal_transaksi', [$startDate->startOfDay(), $endDate->endOfDay()]);
+            $query->whereBetween('transactionDate', [$startDate->startOfDay(), $endDate->endOfDay()]);
         }
 
         if ($jenisTransaksi) {
@@ -68,19 +67,19 @@ class ReportController extends Controller
         $transaksi = $query->with('kategori')->get();
 
         // Menghitung total nominal berdasarkan jenis transaksi
-        $totalPemasukan = $transaksi->where('jenis_transaksi', 'Pendapatan')->sum('nominal_transaksi');
-        $totalPengeluaran = $transaksi->where('jenis_transaksi', 'Pengeluaran')->sum('nominal_transaksi');
-        $saldoAwal = $user->saldo;
-        $totalSaldo = $user->saldo + $totalPemasukan - $totalPengeluaran;
+        $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
+        $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
+        $saldoAwal = $user->accountBalance;
+        $totalSaldo = $user->accountBalance + $totalPemasukan - $totalPengeluaran;
 
-        return view('laporan.print', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
+        return view('report.print', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
     }
 
     public function getReportData(Request $request)
     {
         $user = Auth::user();
         $dateRange = $request->input('date_range');
-        $jenisTransaksi = $request->input('transactionType');
+        $jenisTransaksi = $request->input('jenis_transaksi');
 
         $startDate = null;
         $endDate = null;
@@ -100,16 +99,17 @@ class ReportController extends Controller
         }
 
         if ($jenisTransaksi) {
-            $query->where('transactionType', $jenisTransaksi);
+            $query->where('jenis_transaksi', $jenisTransaksi);
         }
 
         $transaksi = $query->with('kategori')->get();
 
         // Menghitung total nominal berdasarkan jenis transaksi
-        $totalPemasukan = $transaksi->where('transactionType', 'Pendapatan')->sum('transactionAmount');
+        $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
         $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
-        $saldoAwal = $user->saldo;
-        $totalSaldo = $user->saldo + $totalPemasukan - $totalPengeluaran;
+        $saldoAwal = $user->accountBalance;
+        $totalSaldo = $user->accountBalance;
+        +$totalPemasukan - $totalPengeluaran;
 
         return [
             'transaksi' => $transaksi,

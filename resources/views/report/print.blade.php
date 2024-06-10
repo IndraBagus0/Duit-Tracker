@@ -42,11 +42,11 @@
             @foreach ($transaksi as $index => $trx)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $trx->tanggal_transaksi->format('j M Y') }}</td>
-                    <td>{{ $trx->kategori->nama_kategori }}</td>
-                    <td>{{ number_format($trx->nominal_transaksi, 2) }}</td>
-                    <td>{{ $trx->catatan_transaksi }}</td>
-                    <td>{{ $trx->jenis_transaksi }}</td>
+                    <td>{{ $trx->transactionDate->format('j M Y') }}</td>
+                    <td>{{ $trx->kategori->categoryName }}</td>
+                    <td>{{ number_format($trx->transactionAmount, 2) }}</td>
+                    <td>{{ $trx->notesTransaction }}</td>
+                    <td>{{ $trx->transactionType }}</td>
                 </tr>
             @endforeach
         </tbody>

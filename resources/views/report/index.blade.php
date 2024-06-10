@@ -29,8 +29,8 @@
                                     <div class="input-group">
                                         <select name="jenis_transaksi" class="form-control me-2">
                                             <option value="">Jenis Transaksi</option>
-                                            <option value="Pendapatan"
-                                                {{ $jenisTransaksi == 'Pendapatan' ? 'selected' : '' }}>Pendapatan</option>
+                                            <option value="Pemasukan"
+                                                {{ $jenisTransaksi == 'Pemasukan' ? 'selected' : '' }}>Pemasukan</option>
                                             <option value="Pengeluaran"
                                                 {{ $jenisTransaksi == 'Pengeluaran' ? 'selected' : '' }}>Pengeluaran
                                             </option>
@@ -73,11 +73,11 @@
                                                 @foreach ($transaksi as $index => $trx)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $trx->tanggal_transaksi->format('j M Y') }}</td>
-                                                        <td>{{ $trx->kategori->nama_kategori }}</td>
-                                                        <td>{{ number_format($trx->nominal_transaksi, 2) }}</td>
-                                                        <td>{{ $trx->catatan_transaksi }}</td>
-                                                        <td>{{ $trx->jenis_transaksi }}</td>
+                                                        <td>{{ $trx->transactionDate->format('j M Y') }}</td>
+                                                        <td>{{ $trx->kategori->categoryName }}</td>
+                                                        <td>{{ number_format($trx->transactionAmount, 2) }}</td>
+                                                        <td>{{ $trx->notesTransaction }}</td>
+                                                        <td>{{ $trx->transactionType }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
