@@ -41,12 +41,22 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
-                    <a href="/dashboard" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+
+                @if (auth()->user()->roleId == 1)
+                    <li class="sidebar-item {{ Request::is('admin*') ? 'active' : '' }}">
+                        <a href="/admin" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Admin Dashboard</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
+                        <a href="/user" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endif
 
                 @if (auth()->user()->roleId == 1)
                     <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
