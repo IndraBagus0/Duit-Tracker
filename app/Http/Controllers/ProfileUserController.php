@@ -7,19 +7,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class ProfilUserController extends Controller
+class ProfileUserController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        return view('profil.index', compact('user'));
+        return view('profile.index', compact('user'));
     }
 
     public function update(Request $request)
     {
         $user = Auth::user();
 
-        // Validate the request data
+        // Validasi data permintaan
         $request->validate(
             [
                 'name' => 'required|string|max:255',
@@ -27,7 +27,7 @@ class ProfilUserController extends Controller
                 'password' => 'nullable|string|min:8'
             ],
             [
-                // Error messages
+                // Pesan kesalahan
                 'name.required' => 'Nama wajib diisi.',
                 'name.string' => 'Nama harus berupa teks.',
                 'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
@@ -40,29 +40,29 @@ class ProfilUserController extends Controller
             ]
         );
 
-        // Update the user data
+        // Update data pengguna
         $user->name = $request->input('name');
         $user->phoneNumber = $request->input('phoneNumber');
 
-        // Update password if provided
+        // Update kata sandi jika diberikan
         if ($request->filled('password')) {
             $user->password = Hash::make($request->input('password'));
         }
 
-        // Save the user data
+        // Simpan data pengguna
         $user->save();
 
-        // Redirect back with a success message
-        return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui.');
+        // Redirect kembali dengan pesan sukses
+        return redirect()->route('profile.index')->with('success', 'Profil berhasil diperbarui.');
     }
 
     public function upgrade()
     {
         $user = Auth::user();
 
-        $user->roleId = 4;
+        $user->roleId = 4;  // Asumsi: roleId 4 adalah status yang diinginkan
         $user->save();
 
-        return redirect()->route('profil.index')->with('success', 'Akun berhasil diupgrade, silahkan tunggu konfirmasi dari admin.');
+        return redirect()->route('profile.index')->with('success', 'Akun berhasil diupgrade, silahkan tunggu konfirmasi dari admin.');
     }
 }

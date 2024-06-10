@@ -13,7 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\ProfileUserController;
 
 Route::get('/', function () {
     return view('index');
@@ -66,9 +66,9 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/print', [ReportController::class, 'print'])->name('laporan.print');
-    Route::get('/profil', [ProfilUserController::class, 'index'])->name('profil');
-    Route::post('/profil', [ProfilUserController::class, 'update'])->name('profil.update');
-    Route::get('/profil/upgrade', [ProfilUserController::class, 'upgrade'])->name('profil.upgrade');
+    Route::get('/profil', [ProfileUserController::class, 'index'])->name('profile.index');
+    Route::post('/profil/update', [ProfileUserController::class, 'update'])->name('profile.update');
+    Route::get('/profil/upgrade', [ProfileUserController::class, 'upgrade'])->name('profile.upgrade');
     Route::get('/transaksi/pemasukan', [TransactionController::class, 'pemasukan'])->name('pemasukan');
     Route::get('/transaksi/pemasukan/create', [TransactionController::class, 'create'])->name('createIncome')->defaults('type', 'pemasukan');
     Route::post('/transaksi/pemasukan', [TransactionController::class, 'store'])->name('saveIncome');
