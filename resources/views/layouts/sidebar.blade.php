@@ -96,8 +96,8 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ Request::is('pengingat_pembayaran*') ? 'active' : '' }}">
-                        <a href="/pengingat_pembayaran" class='sidebar-link'>
+                    <li class="sidebar-item {{ Request::is('pengingat-pembayaran*') ? 'active' : '' }}">
+                        <a href="/pengingat-pembayaran" class='sidebar-link'>
                             <i class="bi bi-clock"></i>
                             <span>Pengingat Pembayaran</span>
                         </a>

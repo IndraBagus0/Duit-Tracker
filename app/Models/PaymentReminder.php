@@ -12,6 +12,10 @@ class PaymentReminder extends Model
     protected $table = 'tbl_paymentReminder';
     protected $primaryKey = 'notifId';
 
+    protected $casts = [
+        'reminderDate' => 'datetime',
+    ];
+
     protected $fillable = [
         'reminderDate',
         'nominal',
