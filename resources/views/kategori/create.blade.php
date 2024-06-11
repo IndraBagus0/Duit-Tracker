@@ -47,7 +47,7 @@
         <div class="col-md-12">
             <div class="form-group mandatory">
                 <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Masukkan nama kategori" data-parsley-required="true">
+                <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" placeholder="Masukkan nama kategori" data-parsley-required="true"  value="{{ old('nama_kategori') }}">
             </div>
 
             <div class="form-group mandatory">

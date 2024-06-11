@@ -44,22 +44,22 @@
                             <div class="col-md-12">
                                 <div class="form-group mandatory">
                                     <label for="name" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" data-parsley-required="true">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama lengkap" data-parsley-required="true" value="{{ old('name') }}">
                                 </div>
 
                                 <div class="form-group mandatory">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" data-parsley-required="true">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" data-parsley-required="true" value="{{ old('email') }}">
                                 </div>
 
                                 <div class="form-group mandatory">
                                     <label for="phone" class="form-label">No HP</label>
-                                    <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan nomor HP" data-parsley-required="true">
+                                    <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan nomor HP" data-parsley-required="true" value="{{ old('no_hp') }}">
                                 </div>
 
                                 <div class="form-group mandatory">
                                     <label for="saldo" class="form-label">Saldo</label>
-                                    <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Masukkan nominal saldo" data-parsley-required="true">
+                                    <input type="text" class="form-control" id="saldo" name="saldo" placeholder="Masukkan nominal saldo" data-parsley-required="true" value="{{ old('saldo') }}">
                                 </div>
 
                                 <div class="form-group mandatory">
@@ -77,6 +77,34 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            var saldo = document.getElementById('saldo');
+            saldo.addEventListener('keyup', function(e) {
+                this.value = removeLeadingZeros(this.value);
+                this.value = formatRupiah(this.value, 'Rp. ');
+            });
+
+            function removeLeadingZeros(value) {
+                return value.replace(/^0+/, '');
+            }
+            
+            function formatRupiah(angka, prefix) {
+                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                    split    = number_string.split(','),
+                    sisa     = split[0].length % 3,
+                    rupiah     = split[0].substr(0, sisa),
+                    ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+                    
+                if (ribuan) {
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
+                
+                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+            }
+        </script>
 
         @include('layouts.footer')
     </div>
