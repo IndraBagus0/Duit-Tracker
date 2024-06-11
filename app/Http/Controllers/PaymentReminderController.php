@@ -12,8 +12,11 @@ class PaymentReminderController extends Controller
     {
         // Mengambil semua data pengingat pembayaran untuk user yang sedang login
         $PaymentReminders = PaymentReminder::where('userId', Auth::id())->get();
-        return view('paymentReminder.index', compact('PaymentReminders'));
+        $totalTunggakan = $this->getTotalTunggakan();
+
+        return view('paymentReminder.index', compact('PaymentReminders', 'totalTunggakan'));
     }
+
 
     public function create()
     {
@@ -32,24 +35,35 @@ class PaymentReminderController extends Controller
             'reminderDate' => $request->reminderDate,
             'nominal' => $request->nominal,
             'description' => $request->description,
-            'status' => 'unpaid',
+            'status' => 'Belum Lunas',
             'userId' => Auth::id(),
         ]);
 
         return redirect()->route('paymentReminder.index')
             ->with('success', 'Pengingat pembayaran berhasil ditambahkan.');
     }
+
     public function markAsPaid($id)
     {
         $reminder = PaymentReminder::find($id);
 
         // Pastikan hanya user yang memiliki pengingat pembayaran yang bisa mengubah status
         if ($reminder && $reminder->userId == Auth::id()) {
-            $reminder->status = 'paid';
+            $reminder->status = 'Terbayar';
             $reminder->save();
         }
 
         return redirect()->route('paymentReminder.index')
             ->with('success', 'Pembayaran telah berhasil, Lunas!');
+    }
+
+    public function getTotalTunggakan()
+    {
+        // Mengambil total tunggakan dengan status "Belum Lunas" untuk user yang sedang login
+        $totalTunggakan = PaymentReminder::where('userId', Auth::id())
+            ->where('status', 'Belum Lunas')
+            ->sum('nominal');
+
+        return $totalTunggakan;
     }
 }

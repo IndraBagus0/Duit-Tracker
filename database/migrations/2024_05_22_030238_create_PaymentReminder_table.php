@@ -13,7 +13,7 @@ class CreatePaymentReminderTable extends Migration
             $table->date('reminderDate');
             $table->integer('nominal');
             $table->text('description');
-            $table->string('status', 10);
+            $table->string('status', 12);
             $table->unsignedBigInteger('userId');
             $table->foreign('userId')->references('id')->on('tbl_users');
             $table->timestamps();
