@@ -16,13 +16,18 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function paymentReminders()
+    {
+        return $this->hasMany(PaymentReminder::class, 'userId');
+    }
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class, 'userId');
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class, 'roleId');
-    }
-
-    public static function totalSaldo()
-    {
-        return static::sum('accountBalance');
     }
 }

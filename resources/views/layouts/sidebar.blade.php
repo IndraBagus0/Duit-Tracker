@@ -50,7 +50,7 @@
                         </a>
                     </li>
                 @else
-                    <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
+                    <li class="sidebar-item {{ Request::is('user*') ? 'active' : '' }}">
                         <a href="/user" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
