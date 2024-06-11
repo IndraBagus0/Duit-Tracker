@@ -47,23 +47,23 @@
                                                     <td>{{ number_format($pengingat->nominal, 0, ',', '.') }}</td>
                                                     <td>{{ $pengingat->description }}</td>
                                                     <td>
-                                                        @if ($pengingat->status == 'paid')
+                                                        @if ($pengingat->status == 'Terbayar')
                                                             <span class="badge bg-success">{{ $pengingat->status }}</span>
                                                         @else
-                                                            <span class="badge bg-warning">{{ $pengingat->status }}</span>
+                                                            <span class="badge bg-danger">{{ $pengingat->status }}</span>
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($pengingat->status == 'unpaid')
+                                                        @if ($pengingat->status == 'Belum Lunas')
                                                             <form
                                                                 action="{{ route('paymentReminder.markAsPaid', ['id' => $pengingat->notifId]) }}"
                                                                 method="POST" id="markAsPaidForm-{{ $pengingat->notifId }}"
                                                                 style="display:inline;">
                                                                 @csrf
-                                                                <button type="button" class="btn btn-sm btn-primary"
+                                                                <button type="button" class="btn btn-sm btn-success"
                                                                     onclick="confirmMarkAsPaid({{ $pengingat->notifId }})"><i
                                                                         class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="edit"></i></button>
+                                                                        data-feather="check-circle"></i></button>
                                                             </form>
                                                         @endif
                                                         <!-- Add other actions like edit, delete here if needed -->
