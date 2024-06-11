@@ -5,121 +5,77 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Carbon;
+use App\Models\User;
 
 class ReportController extends Controller
 {
-    public function index(Request $request)
+    public function __construct()
     {
-        $user = Auth::user();
-        $dateRange = $request->input('date_range');
-        $jenisTransaksi = $request->input('jenis_transaksi');
-        $startDate = null;
-        $endDate = null;
-        if ($dateRange) {
-            $dates = explode(' to ', $dateRange);
-            if (count($dates) == 2) {
-                $startDate = Carbon::parse($dates[0])->toDateString();
-                $endDate = Carbon::parse($dates[1])->toDateString();
-            } else {
-                return redirect()->back()->with('error', 'Harap Masukan Rentang Waktu');
-            }
-            $query = Transaction::where('userId', Auth::user()->id)
-                ->whereBetween('transactionDate', [$startDate, $endDate]);
-        } else {
-            $query = Transaction::where('userId', Auth::user()->id);
-        }
-
-        if ($jenisTransaksi) {
-            $query->where('jenis_transaksi', $jenisTransaksi);
-        }
-
-        $transaksi = $query->with('kategori')->get();
-
-        // Menghitung total nominal berdasarkan jenis transaksi
-        $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
-        $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
-        $saldoAwal = $user->accountBalance;
-        $totalSaldo = $user->accountBalance + $totalPemasukan - $totalPengeluaran;
-
-        return view('report.index', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
+        // Set locale ke bahasa Indonesia
+        Carbon::setLocale('id');
     }
 
+    public function index(Request $request)
+    {
+        $reportData = $this->getReportData(
+            Auth::user(),
+            $request->input('date_range'),
+            $request->input('jenis_transaksi')
+        );
+
+        return view('report.index', $reportData);
+    }
 
     public function print(Request $request)
     {
-        $startDate = Carbon::parse($request->input('start_date'));
-        $endDate = Carbon::parse($request->input('end_date'));
-        $jenisTransaksi = $request->input('jenis_transaksi');
-        $user = Auth::user();
+        $reportData = $this->getReportData(
+            Auth::user(),
+            $request->input('date_range'),
+            $request->input('jenis_transaksi'),
+            $request->input('start_date'),
+            $request->input('end_date')
+        );
 
-        $query = Transaction::where('userId', $user->id);
-
-        if ($startDate && $endDate) {
-            $query->whereBetween('transactionDate', [$startDate->startOfDay(), $endDate->endOfDay()]);
-        }
-
-        if ($jenisTransaksi) {
-            $query->where('jenis_transaksi', $jenisTransaksi);
-        }
-
-        $transaksi = $query->with('kategori')->get();
-
-        // Menghitung total nominal berdasarkan jenis transaksi
-        $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
-        $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
-        $saldoAwal = $user->accountBalance;
-        $totalSaldo = $user->accountBalance + $totalPemasukan - $totalPengeluaran;
-
-        return view('report.print', compact('transaksi', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo'));
+        return view('report.print', $reportData);
     }
 
-    public function getReportData(Request $request)
+    public function getReportData(User $user, $dateRange = null, $jenisTransaksi = null, $startDate = null, $endDate = null)
     {
-        $user = Auth::user();
-        $dateRange = $request->input('date_range');
-        $jenisTransaksi = $request->input('jenis_transaksi');
+        $query = Transaction::where('userId', $user->id);
 
-        $startDate = null;
-        $endDate = null;
         if ($dateRange) {
             $dates = explode(' to ', $dateRange);
             if (count($dates) == 2) {
-                $startDate = Carbon::parse($dates[0])->toDateString();
-                $endDate = Carbon::parse($dates[1])->toDateString();
+                $startDate = Carbon::parse($dates[0])->startOfDay();
+                $endDate = Carbon::parse($dates[1])->endOfDay();
             } else {
-                return response()->json(['error' => 'Harap Masukan Rentang Waktu'], 400);
+                return redirect()->back()->with('error', 'Harap Masukkan Rentang Waktu yang Benar');
             }
-
-            $query = Transaction::where('userId', $user->id)
-                ->whereBetween('transactionDate', [$startDate, $endDate]);
         } else {
-            $query = Transaction::where('userId', $user->id);
+            $startDate = $startDate ? Carbon::parse($startDate)->startOfDay() : Carbon::now()->startOfMonth();
+            $endDate = $endDate ? Carbon::parse($endDate)->endOfDay() : Carbon::now()->endOfMonth();
+        }
+
+        if ($startDate && $endDate) {
+            $query->whereBetween('transactionDate', [$startDate, $endDate]);
         }
 
         if ($jenisTransaksi) {
             $query->where('jenis_transaksi', $jenisTransaksi);
         }
 
-        $transaksi = $query->with('kategori')->get();
+        $transaksi = $query->with('kategori')->orderBy('transactionDate', 'asc')->get();
 
         // Menghitung total nominal berdasarkan jenis transaksi
         $totalPemasukan = $transaksi->where('transactionType', 'Pemasukan')->sum('transactionAmount');
         $totalPengeluaran = $transaksi->where('transactionType', 'Pengeluaran')->sum('transactionAmount');
         $saldoAwal = $user->accountBalance;
-        $totalSaldo = $user->accountBalance;
-        +$totalPemasukan - $totalPengeluaran;
+        $totalSaldo = $saldoAwal + $totalPemasukan - $totalPengeluaran;
 
-        return [
-            'transaksi' => $transaksi,
-            'startDate' => $startDate,
-            'endDate' => $endDate,
-            'totalPemasukan' => $totalPemasukan,
-            'totalPengeluaran' => $totalPengeluaran,
-            'jenisTransaksi' => $jenisTransaksi,
-            'saldoAwal' => $saldoAwal,
-            'totalSaldo' => $totalSaldo
-        ];
+        // Dapatkan bulan saat ini dalam format bahasa Indonesia
+        $bulanSaatIni = Carbon::now()->translatedFormat('F Y');
+
+        return compact('transaksi', 'dateRange', 'startDate', 'endDate', 'totalPemasukan', 'totalPengeluaran', 'jenisTransaksi', 'saldoAwal', 'totalSaldo', 'bulanSaatIni');
     }
 }
