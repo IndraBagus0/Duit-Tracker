@@ -121,7 +121,7 @@
                 <div class="col-12"><small class="fs-7 d-block">Layanan Kami</small></div>
                 <div class="col-12 d-xxl-flex d-xl-flex d-lg-flex d-md-flex d-sm-block d-block align-items-center justify-content-xxl-between justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-sm-center ">
                     <h2 class="fs-2 text-black mb-0">Layananan yang <br> Kami Berikan.</h2>
-                    <a href="#services" class="btn btn-warning btn-hover-secondery section-btn">All Services</a>
+                    <a href="#services" class="btn btn-warning btn-hover-secondery section-btn">Layanan</a>
                 </div>
             </div>
             <div class="row d-flex flex-wrap justify-content-center step-row">
@@ -226,7 +226,7 @@
             <div class="row justify-content-center">
                 <div class="col-xxl-6 col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                     <small class="fs-7 d-block">Paket Harga</small>
-                    <h2 class="fs-3 pricing-head text-black mb-0 position-relative">Bagaimana Dengan Harga Berlangganan Kami</h2>
+                    <h2 class="fs-3 pricing-head text-black mb-0 position-relative">Bagaimana dengan Harga Berlangganan Kami</h2>
                 </div>
             </div>
             <div class="row justify-content-center price-plan">
@@ -236,11 +236,15 @@
                             <small class="fs-7 d-block text-warning text-center">Gratis</small>
                             <h2 class="mb-4 text-center position-relative"><sub class="fs-2 text-black">0</sub><sup class="fs-6 position-absolute">$</sup></h2>
                             <small class="fs-7 d-block text-center">Free</small>
-                            <p class="fs-7 text-center fw-500">For individuals looking for a simple CRM solution</p>
+                            <p class="fs-7 text-center fw-500">For individuals looking for a simple CRM solution with up to 5 service features.</p>
                             <ul class="list-unstyled mb-0 pl-0">
                                 <li class="d-flex align-items-start">
                                     <i class="ti ti-circle-check fs-4 pe-2"></i>
                                     <span class="fs-7 text-black">Basic CRM features</span>
+                                </li>
+                                <li class="d-flex align-items-start">
+                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
+                                    <span class="fs-7 text-black">Up to 5 Service Features</span>
                                 </li>
                                 <li class="d-flex align-items-start">
                                     <i class="ti ti-circle-check fs-4 pe-2"></i>
@@ -266,11 +270,15 @@
                             <small class="fs-7 d-block text-warning text-center">Bisnis</small>
                             <h2 class="mb-4 text-center position-relative"><sub class="fs-2 text-black">49</sub><sup class="fs-6 position-absolute">$</sup></h2>
                             <small class="fs-7 d-block text-center">Free</small>
-                            <p class="fs-7 text-center fw-500">For individuals looking for a simple CRM solution</p>
+                            <p class="fs-7 text-center fw-500">For businesses looking for comprehensive CRM solutions with unlimited service features.</p>
                             <ul class="list-unstyled mb-0 pl-0">
                                 <li class="d-flex align-items-start">
                                     <i class="ti ti-circle-check fs-4 pe-2"></i>
                                     <span class="fs-7 text-black">Basic CRM features</span>
+                                </li>
+                                <li class="d-flex align-items-start">
+                                    <i class="ti ti-circle-check fs-4 pe-2"></i>
+                                    <span class="fs-7 text-black">Unlimited Service Features</span>
                                 </li>
                                 <li class="d-flex align-items-start">
                                     <i class="ti ti-circle-check fs-4 pe-2"></i>
