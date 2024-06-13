@@ -23,13 +23,15 @@ class PengingatPembayaranController extends Controller
     {
         $request->validate([
             'tanggal_pengingat' => 'required|date',
-            'nominal' => 'required|numeric',
-            'deskripsi' => 'nullable|string',
+            'nominal' => 'required|string',
+            'deskripsi' => 'required|string',
         ]);
+
+        $saldo = preg_replace('/[^0-9]/', '', $request->nominal);
 
         PengingatPembayaran::create([
             'tanggal_pengingat' => $request->tanggal_pengingat,
-            'nominal' => $request->nominal,
+            'nominal' => $saldo,
             'deskripsi' => $request->deskripsi,
             'status' => 'unpaid',
             'id_user' => Auth::id(),
