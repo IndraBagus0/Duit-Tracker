@@ -18,7 +18,7 @@ class RegisterController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:30|unique:users',
+            'email' => 'required|string|email|max:30|unique:tbl_users',
             'password' => 'required|string|min:8|confirmed',
             'phoneNumber' => 'required|string|max:15',
             'accountBalance' => 'required|string|max:15',
@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'phoneNumber' => $request->phoneNumber,
             'accountBalance' => $accountBalance,
-            'id_role' => 2,
+            'roleId' => 2,
         ]);
 
         return redirect()->route('register')->with('success', 'You have successfully registered!');

@@ -49,20 +49,20 @@
                             <div id="password-match-status" class="mt-1"></div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" name="no_hp" id="no_hp" class="form-control form-control-xl" placeholder="No Telepon" value="{{ old('no_hp') }}">
+                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control form-control-xl" placeholder="No Telepon" value="{{ old('phoneNumber') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-telephone"></i>
                             </div>
-                            @error('no_hp')
+                            @error('phoneNumber')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" id="saldo" name="saldo" class="form-control form-control-xl" placeholder="Jumlah Saldo" value="{{ old('saldo') }}">
+                            <input type="text" id="accountBalance" name="accountBalance" class="form-control form-control-xl" placeholder="Jumlah Saldo" value="{{ old('accountBalance') }}">
                             <div class="form-control-icon">
                                 <i class="bi bi-wallet"></i>
                             </div>
-                            @error('saldo')
+                            @error('accountBalance')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -81,7 +81,7 @@
     </div>
    
     <script>
-        var saldo = document.getElementById('saldo');
+        var saldo = document.getElementById('accountBalance');
         saldo.addEventListener('keyup', function(e) {
             this.value = removeLeadingZeros(this.value);
             this.value = formatRupiah(this.value, 'Rp. ');
