@@ -57,11 +57,13 @@ class DataUserController extends Controller
         'password.min' => 'Kata sandi harus memiliki minimal 8 karakter.',
     ]);
 
+        $saldosaya = preg_replace('/[^0-9]/', '', $request->saldo);
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'saldo' => $request->saldo,
+            'saldo' => $saldosaya,
             'id_role' => 2,
             'password' => bcrypt($request->password),
         ]);
