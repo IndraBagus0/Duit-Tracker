@@ -34,7 +34,7 @@ class ForgotPasswordController extends Controller
 
         $token = Str::random(60);
 
-        DB::table('password_resets')->insert([
+        DB::table('tbl_password_resets')->insert([
             'email' => $email,
             'token' => $token,
             'created_at' => Carbon::now()
@@ -57,7 +57,7 @@ class ForgotPasswordController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $tokenData = DB::table('password_resets')
+        $tokenData = DB::table('tbl_password_resets')
             ->where('token', $request->token)
             ->first();
 
@@ -74,7 +74,7 @@ class ForgotPasswordController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        DB::table('password_resets')->where('email', $user->email)->delete();
+        DB::table('tbl_password_resets')->where('email', $user->email)->delete();
 
         return redirect()->route('login')->with('success', 'Kata sandi Anda telah berhasil direset.');
     }
