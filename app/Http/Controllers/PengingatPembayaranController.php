@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -27,6 +28,20 @@ class PengingatPembayaranController extends Controller
             'deskripsi' => 'required|string',
         ]);
 
+        $user = Auth::user();
+        $user_id = $user->id;
+        $user_role = $user->id_role;
+
+        // Tambahkan logika untuk membatasi jumlah data
+        if (in_array($user_role, [2, 4])) {
+            $unpaid_count = PengingatPembayaran::where('id_user', $user_id)
+                                                ->where('status', 'unpaid')
+                                                ->count();
+            if ($unpaid_count >= 5) {
+                return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 pengingat pembayaran yang belum dibayar. Silahkan upgrade ke premium');
+            }
+        }
+
         $saldo = preg_replace('/[^0-9]/', '', $request->nominal);
 
         PengingatPembayaran::create([
@@ -34,12 +49,13 @@ class PengingatPembayaranController extends Controller
             'nominal' => $saldo,
             'deskripsi' => $request->deskripsi,
             'status' => 'unpaid',
-            'id_user' => Auth::id(),
+            'id_user' => $user_id,
         ]);
 
         return redirect()->route('pengingat_pembayaran.index')
-                         ->with('success', 'Pengingat pembayaran berhasil ditambahkan.');
+            ->with('success', 'Pengingat pembayaran berhasil ditambahkan.');
     }
+
     public function markAsPaid($id)
     {
         $pengingat = PengingatPembayaran::find($id);
@@ -51,6 +67,6 @@ class PengingatPembayaranController extends Controller
         }
 
         return redirect()->route('pengingat_pembayaran.index')
-                         ->with('success', 'Pengingat pembayaran berhasil diperbarui menjadi paid.');
+            ->with('success', 'Pengingat pembayaran berhasil diperbarui menjadi paid.');
     }
 }
