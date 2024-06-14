@@ -119,7 +119,7 @@
 <script>
     function confirmLogout() {
         Swal.fire({
-            title: "Are you sure?",
+            title: "Apakah Kamu Yakin?",
             text: "You will be logged out!",
             icon: "warning",
             showCancelButton: true,

@@ -39,6 +39,6 @@ class RegisterController extends Controller
             'id_role' => 2,
         ]);
 
-        return redirect()->route('register')->with('success', 'You have successfully registered!');
+        return redirect()->route('register')->with('success', 'Berhasil Mendaftarkan Akun! Silahkan Masuk ke Akun Anda');
     }
 }

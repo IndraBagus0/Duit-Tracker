@@ -78,6 +78,6 @@ class ForgotPasswordController extends Controller
 
         DB::table('password_resets')->where('email', $user->email)->delete();
 
-        return redirect()->route('login')->with('success', 'Kata sandi Anda telah berhasil direset.');
+        return back()->with('success', 'Kata sandi Anda telah berhasil direset.');
     }
 }
