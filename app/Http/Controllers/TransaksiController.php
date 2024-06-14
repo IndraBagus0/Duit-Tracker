@@ -62,7 +62,12 @@ class TransaksiController extends Controller
         $transaksi = new Transaksi();
         $transaksi->tanggal_transaksi = $request->tanggal_transaksi;
         $transaksi->nominal_transaksi = $nominal;
-        $transaksi->catatan_transaksi = $request->catatan_transaksi;
+
+        // Menangani catatan transaksi yang opsional
+        if ($request->has('catatan_transaksi') && !empty($request->catatan_transaksi)) {
+            $transaksi->catatan_transaksi = $request->catatan_transaksi;
+        }        
+
         $transaksi->jenis_transaksi = $request->jenis_transaksi;
         $transaksi->id_kategori = $request->id_kategori;
         $transaksi->id_user = $user_id;
