@@ -41,7 +41,7 @@
                                         @foreach($pengingatPembayarans as $pengingat)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($pengingat->tanggal_pengingat)->format('d-m-Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($pengingat->tanggal_pengingat)->locale('id')->translatedFormat('d F Y') }}</td>
                                             <td>{{ number_format($pengingat->nominal, 0, ',', '.') }}</td>
                                             <td>{{ $pengingat->deskripsi }}</td>
                                             <td>
