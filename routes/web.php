@@ -38,6 +38,9 @@ Route::post('/forgot_password-action', [ForgotPasswordController::class, 'forgot
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset_password'])->name('reset-password');
 Route::post('/reset-password-action', [ForgotPasswordController::class, 'reset_password_action'])->name('reset-password-action');
 
+//Send Email
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
 
 
 //session
