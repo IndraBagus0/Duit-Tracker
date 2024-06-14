@@ -41,7 +41,7 @@ class TransaksiController extends Controller
 
         $request->validate([
             'tanggal_transaksi' => 'required|date',
-            'nominal_transaksi' => 'required|numeric',
+            'nominal_transaksi' => 'required|string',
             'catatan_transaksi' => 'nullable|string',
             'jenis_transaksi' => 'required|in:Pendapatan,Pengeluaran',
             'id_kategori' => 'required|exists:kategori,id_kategori',
@@ -50,6 +50,7 @@ class TransaksiController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         $user_role = $user->id_role;
+        $nominal = preg_replace('/[^0-9]/', '', $request->nominal_transaksi);
 
         if (in_array($user_role, [2, 4])) {
             $transaksi_count = Transaksi::where('id_user', $user_id)->count();
@@ -60,7 +61,7 @@ class TransaksiController extends Controller
 
         $transaksi = new Transaksi();
         $transaksi->tanggal_transaksi = $request->tanggal_transaksi;
-        $transaksi->nominal_transaksi = $request->nominal_transaksi;
+        $transaksi->nominal_transaksi = $nominal;
         $transaksi->catatan_transaksi = $request->catatan_transaksi;
         $transaksi->jenis_transaksi = $request->jenis_transaksi;
         $transaksi->id_kategori = $request->id_kategori;
