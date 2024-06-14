@@ -14,9 +14,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfilUserController;
-use App\Http\Controllers\ContactController;
-
-
 
 Route::get('/', function () {
     return view('index');
@@ -43,6 +40,8 @@ Route::post('/reset-password-action', [ForgotPasswordController::class, 'reset_p
 
 //Send Email
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+
 
 //session
 Route::get('/redirect', [RedirectController::class, 'cek'])->name('redirect');
