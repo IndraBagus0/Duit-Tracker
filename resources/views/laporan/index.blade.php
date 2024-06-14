@@ -59,7 +59,7 @@
                                         @foreach ($transaksi as $index => $trx)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $trx->tanggal_transaksi }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($trx->tanggal_transaksi)->locale('id')->translatedFormat('d F Y') }}</td>
                                             <td>{{ $trx->kategori->nama_kategori }}</td>
                                             <td>{{ number_format($trx->nominal_transaksi, 2) }}</td>
                                             <td>{{ $trx->catatan_transaksi }}</td>

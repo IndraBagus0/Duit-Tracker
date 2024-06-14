@@ -41,7 +41,7 @@
                                         @foreach($pengingatPembayarans as $pengingat)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($pengingat->tanggal_pengingat)->format('d-m-Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($pengingat->tanggal_pengingat)->locale('id')->translatedFormat('d F Y') }}</td>
                                             <td>{{ number_format($pengingat->nominal, 0, ',', '.') }}</td>
                                             <td>{{ $pengingat->deskripsi }}</td>
                                             <td>
@@ -52,12 +52,19 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if($pengingat->status == 'unpaid')
+                                            @if($pengingat->status == 'unpaid')
                                                 <form action="{{ route('pengingat_pembayaran.markAsPaid', ['id' => $pengingat->id_notif]) }}" method="POST" id="markAsPaidForm-{{ $pengingat->id_notif }}" style="display:inline;">
                                                     @csrf
-                                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirmMarkAsPaid({{ $pengingat->id_notif }})"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-primary" onclick="confirmMarkAsPaid({{ $pengingat->id_notif }})">
+                                                        <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i>
+                                                    </button>
                                                 </form>
-                                                @endif
+                                            @else
+                                                
+                                                    <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="check"></i>
+                                               
+                                            @endif
+
                                                 <!-- Add other actions like edit, delete here if needed -->
                                             </td>
                                         </tr>

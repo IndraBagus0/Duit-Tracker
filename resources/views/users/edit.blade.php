@@ -68,9 +68,6 @@
                                 </div>
                             @endif
 
-
-                        
-
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password baru (opsional)">
