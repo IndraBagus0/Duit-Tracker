@@ -64,9 +64,7 @@ class TransaksiController extends Controller
         $transaksi->nominal_transaksi = $nominal;
 
         // Menangani catatan transaksi yang opsional
-        if ($request->has('catatan_transaksi') && !empty($request->catatan_transaksi)) {
-            $transaksi->catatan_transaksi = $request->catatan_transaksi;
-        }        
+        $transaksi->catatan_transaksi = $request->catatan_transaksi ?? '';       
 
         $transaksi->jenis_transaksi = $request->jenis_transaksi;
         $transaksi->id_kategori = $request->id_kategori;
