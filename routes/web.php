@@ -14,6 +14,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfilUserController;
+use App\Http\Controllers\ContactController;
+
 
 Route::get('/', function () {
     return view('index');
