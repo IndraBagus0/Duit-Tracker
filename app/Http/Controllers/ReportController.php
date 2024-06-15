@@ -62,7 +62,7 @@ class ReportController extends Controller
         }
 
         if ($jenisTransaksi) {
-            $query->where('jenis_transaksi', $jenisTransaksi);
+            $query->where('transactionType', $jenisTransaksi);
         }
 
         $transaksi = $query->with('kategori')->orderBy('transactionDate', 'asc')->get();
