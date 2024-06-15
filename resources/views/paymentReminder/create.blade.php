@@ -42,8 +42,9 @@
                             <div class="form-group has-icon-left">
                                 <label for="nominal-id-icon">Nominal</label>
                                 <div class="position-relative">
-                                    <input type="number" class="form-control" name="nominal" placeholder="Masukan Nominal"
+                                    <input type="text" class="form-control" name="nominal" placeholder="Masukan Nominal"
                                         id="nominal-id-icon" required>
+                                    <input type="hidden" id="nominal" name="nominal">
                                     <div class="form-control-icon">
                                         <i class="bi bi-cash-coin"></i>
                                     </div>
@@ -66,5 +67,38 @@
 
             @include('layouts.footer')
         </div>
+        <script>
+            var saldo = document.getElementById('nominal-id-icon');
+            var nominal = document.getElementById('nominal');
+
+            saldo.addEventListener('input', function(e) {
+                // Remove formatting to get plain number
+                var plainNumber = removeNonNumeric(this.value);
+                // Update the hidden input with the plain number
+                nominal.value = plainNumber;
+                // Format the value and update the visible input
+                this.value = formatRupiah(plainNumber, 'Rp. ');
+            });
+
+            function removeNonNumeric(value) {
+                return value.replace(/[^,\d]/g, '');
+            }
+
+            function formatRupiah(angka, prefix) {
+                var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                    split = number_string.split(','),
+                    sisa = split[0].length % 3,
+                    rupiah = split[0].substr(0, sisa),
+                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                if (ribuan) {
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
+
+                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                return prefix == undefined ? rupiah : (rupiah ? prefix + rupiah : '');
+            }
+        </script>
     </div>
 @endsection

@@ -44,7 +44,7 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $trx->transactionDate->format('j M Y') }}</td>
                     <td>{{ $trx->kategori->categoryName }}</td>
-                    <td>{{ number_format($trx->transactionAmount, 2) }}</td>
+                    <td>{{ number_format($trx->transactionAmount, 0, ',', '.') }}</td>
                     <td>{{ $trx->notesTransaction }}</td>
                     <td>{{ $trx->transactionType }}</td>
                 </tr>
@@ -53,25 +53,25 @@
         <tfoot>
             <tr>
                 <th colspan="3">Saldo Awal</th>
-                <th colspan="3" style="text-align: end">{{ number_format($saldoAwal, 2) }}
+                <th colspan="3" style="text-align: end">{{ number_format($saldoAwal, 0, ',', '.') }}
                 </th>
             </tr>
             <tr>
                 <th colspan="3">Pemasukan</th>
                 <th colspan="3" style="text-align: end">
-                    {{ number_format($totalPemasukan, 2) }}</th>
+                    {{ number_format($totalPemasukan, 0, ',', '.') }}</th>
             </tr>
             <tr>
                 <th colspan="3">Pengeluaran</th>
                 @php
-                    $formattedTotalPengeluaran = number_format($totalPengeluaran * -1, 2);
+                    $formattedTotalPengeluaran = number_format($totalPengeluaran * -1, 0, ',', '.');
                 @endphp
                 <th colspan="3" style="text-align: end">{{ $formattedTotalPengeluaran }}
                 </th>
             </tr>
             <tr>
                 <th colspan="3">Saldo Akhir</th>
-                <th colspan="3" style="text-align: end">{{ number_format($totalSaldo, 2) }}
+                <th colspan="3" style="text-align: end">{{ number_format($totalSaldo, 0, ',', '.') }}
                 </th>
             </tr>
         </tfoot>
