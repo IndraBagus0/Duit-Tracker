@@ -2,8 +2,8 @@
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="index.html"><img src="{{ asset('template/assets/images/logo/logo.svg') }}" alt="Logo"
+                <div class="logo px-2 mt-1">
+                    <a href=""><img src="{{ asset('LandingPage/assets/images/DuidTracker.svg') }}" alt="Logo"
                             srcset=""></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -41,7 +41,6 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-
                 @if (auth()->user()->roleId == 1)
                     <li class="sidebar-item {{ Request::is('admin*') ? 'active' : '' }}">
                         <a href="/admin" class='sidebar-link'>
@@ -57,7 +56,6 @@
                         </a>
                     </li>
                 @endif
-
                 @if (auth()->user()->roleId == 1)
                     <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
                         <a href="/kategori" class='sidebar-link'>
@@ -131,13 +129,13 @@
     <script>
         function confirmLogout() {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You will be logged out!",
+                title: "Apakah Kamu Yakin?",
+                text: "Kamu harus masuk lagi untuk kembali kesini!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, logout!"
+                confirmButtonText: "Iya, Keluar!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('logout-form').submit();
