@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -17,28 +19,33 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:30|unique:tbl_users',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:tbl_users',
             'password' => 'required|string|min:8|confirmed',
             'phoneNumber' => 'required|string|max:15',
-            'accountBalance' => 'required|string|max:15',
+            'accountBalance' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput()->with('error', 'Something went wrong!');
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        $accountBalance = preg_replace('/[^0-9]/', '', $request->accountBalance);
+        // Set timezone to Asia/Jakarta (WIB/GMT+7)
+        $now = Carbon::now('Asia/Jakarta');
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phoneNumber' => $request->phoneNumber,
-            'accountBalance' => $accountBalance,
+            'accountBalance' => $request->accountBalance,
             'roleId' => 2,
+            'created_at' => $now,
+            'updated_at' => $now,
         ]);
 
-        return redirect()->route('register')->with('success', 'You have successfully registered!');
+        return redirect()->back()->with('success', 'Akun berhasil dibuat. Silakan Masuk!');
     }
 }

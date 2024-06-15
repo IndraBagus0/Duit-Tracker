@@ -9,7 +9,7 @@
                 <div class="col-lg-5 col-12">
                     <div id="auth-left">
                         <div class="auth-logo">
-                            <a href="/"><img src="{{ asset('template/assets/images/logo/logo.svg') }}"
+                            <a href="/"><img src="{{ asset('LandingPage/assets/images/DuidTracker.svg') }}"
                                     alt="Logo"></a>
                         </div>
                         <h1 class="auth-title">Masuk</h1>
