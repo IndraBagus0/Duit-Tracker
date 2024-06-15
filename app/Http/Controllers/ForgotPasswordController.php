@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\password_resets;
-use App\Mail\ResetPasswordMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Mail\ResetPasswordMail;
 
 class ForgotPasswordController extends Controller
 {
@@ -34,11 +33,14 @@ class ForgotPasswordController extends Controller
 
         $token = Str::random(60);
 
-        DB::table('tbl_password_resets')->insert([
-            'email' => $email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
+        DB::table('tbl_password_resets')->updateOrInsert(
+            ['email' => $email],
+            [
+                'email' => $email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]
+        );
 
         Mail::to($email)->send(new ResetPasswordMail($token));
 
@@ -76,6 +78,6 @@ class ForgotPasswordController extends Controller
 
         DB::table('tbl_password_resets')->where('email', $user->email)->delete();
 
-        return redirect()->route('login')->with('success', 'Kata sandi Anda telah berhasil direset.');
+        return back()->with('success', 'Kata sandi Anda telah berhasil direset.');
     }
 }
