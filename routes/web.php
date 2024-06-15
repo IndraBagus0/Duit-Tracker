@@ -14,33 +14,32 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileUserController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('index');
 });
-//Register
+
+// Register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
-
-//login
+// Login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'dologin']);
 
-
-//logout
+// Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-//lupa Password
+// Forgot Password
 Route::get('/forgot-password', [ForgotPasswordController::class, 'forgot_password'])->name('forgot-password');
 Route::post('/forgot_password-action', [ForgotPasswordController::class, 'forgot_password_action'])->name('forgot-password-action');
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'reset_password'])->name('reset-password');
 Route::post('/reset-password-action', [ForgotPasswordController::class, 'reset_password_action'])->name('reset-password-action');
 
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
-
-//session
+// Session
 Route::get('/redirect', [RedirectController::class, 'cek'])->name('redirect');
 
 Route::group(['middleware' => ['auth', 'checkrole:1']], function () {
@@ -77,7 +76,8 @@ Route::group(['middleware' => ['auth', 'checkrole:2,3,4']], function () {
     Route::get('/transaksi/pengeluaran/create', [TransactionController::class, 'create'])->name('createOutcome')->defaults('type', 'pengeluaran');
     Route::get('/transaksi/kategori', [CategoryController::class, 'index'])->name('idKategori');
 });
-//pengingat_pembayaran
+
+// Payment Reminder
 Route::middleware(['auth'])->group(function () {
     Route::get('/pengingat-pembayaran', [PaymentReminderController::class, 'index'])->name('paymentReminder.index');
     Route::get('/pengingat-pembayaran/create', [PaymentReminderController::class, 'create'])->name('paymentReminder.create');
@@ -85,8 +85,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pengingat-pembayaran/markAsPaid/{id}', [PaymentReminderController::class, 'markAsPaid'])->name('paymentReminder.markAsPaid');
 });
 
-//dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+// Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

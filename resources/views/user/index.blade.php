@@ -17,7 +17,7 @@
                 <section class="row">
                     <div class="col-12 col-lg-9">
                         <div class="row">
-                            <div class="col-6 col-lg-3 col-md-6">
+                            <div class="col-12 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-4 py-4-5">
                                         <div class="row">
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3 col-md-6">
+                            <div class="col-12 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-4 py-4-5">
                                         <div class="row">
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3 col-md-6">
+                            <div class="col-12 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-4 py-4-5">
                                         <div class="row">
@@ -75,15 +75,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-lg-3 col-md-6">
+                            <div class="col-12 col-lg-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body px-4 py-4-5">
                                         <div class="row">
                                             <div
-                                                class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                                <div class="stats-icon blue mb-2">
-                                                    <i class="iconly-boldCalendar"></i>
-                                                </div>
+                                                class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                                <a href="/pengingat-pembayaran">
+                                                    <div class="stats-icon blue mb-2">
+                                                        <i class="iconly-boldCalendar"></i>
+                                                    </div>
+                                                </a>
                                             </div>
                                             <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                                 <h6 class="text-muted font-semibold">Tunggakan</h6>
@@ -114,12 +116,12 @@
                             <div class="card">
                                 <div class="card-body px-4 py-4-5">
                                     <div class="row">
-                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center ">
+                                        <div class="col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-center ">
                                             <div class="stats-icon purple mb-2">
                                                 <i class="iconly-boldProfile"></i>
                                             </div>
                                         </div>
-                                        <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7 text-center">
+                                        <div class="col-lg-12 col-xl-12 col-xxl-7 text-center">
                                             <h6 class="font-bold">{{ $user = Auth::user()->name }}</h6>
                                             <h6 class="text-muted mb-0">{{ $user = Auth::user()->email }}</h6>
                                         </div>
@@ -132,18 +134,18 @@
                                 <div class="card-header">
                                     <h4>Riwayat Transaksi</h4>
                                 </div>
-                                <div class="card-content">
+                                <div class="card-content pb-4">
                                     <!-- Tampilkan riwayat transaksi terbaru -->
                                     @foreach ($recentTransactions as $transaction)
                                         <div class="recent-message d-flex px-4 py-3">
-                                            <div class="col-md-4 d-flex justify-content-start ">
+                                            <div class="d-flex justify-content-start ">
                                                 <div
                                                     class="stats-icon {{ $transaction->transactionType == 'Pemasukan' ? 'green' : 'red' }} mb-2">
                                                     <i
                                                         class="iconly-boldArrow---{{ $transaction->transactionType == 'Pemasukan' ? 'Up' : 'Down' }}-Circle"></i>
                                                 </div>
                                             </div>
-                                            <div class="name">
+                                            <div class="name ms-4">
                                                 <h5 class="mb-1">
                                                     Rp{{ number_format($transaction->transactionAmount, 0, ',', '.') }}</h5>
                                                 <h6 class="text-muted mb-0">

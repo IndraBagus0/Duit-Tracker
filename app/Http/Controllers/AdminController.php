@@ -28,8 +28,8 @@ class AdminController extends Controller
         $countPremium = User::where('roleId', 3)->count();
         $countFree = User::where('roleId', 2)->count();
         $totalUser = $countPremium + $countFree;
-        $percentagePremium = ($countPremium / $totalUser) * 100;
-        $percentageFree = ($countFree / $totalUser) * 100;
+        $percentagePremium = $totalUser > 0 ? ($countPremium / $totalUser) * 100 : 0;
+        $percentageFree = $totalUser > 0 ? ($countFree / $totalUser) * 100 : 0;
         // Chart Aktivitas Pengguna baru
         $startDate = Carbon::now()->subDays(7);
         $endDate = Carbon::now();

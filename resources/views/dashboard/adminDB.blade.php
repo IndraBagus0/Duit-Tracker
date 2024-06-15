@@ -120,11 +120,14 @@
                                                                     <h6 class="font-extrabold mb-0">Meminta Update Status
                                                                     </h6>
                                                                 @elseif($user->roleId == 2)
-                                                                    <h6 class="font-extrabold mb-0">Pengguna Baru
-                                                                    </h6>
+                                                                    <h6 class="font-extrabold mb-0">Pengguna Baru</h6>
                                                                 @endif
                                                                 <p class="mb-0">
-                                                                    {{ $user->updated_at->translatedFormat('H:m - d M y') }}
+                                                                    @if ($user->updated_at)
+                                                                        {{ $user->updated_at->translatedFormat('H:i - d M y') }}
+                                                                    @else
+                                                                        <span>No update date available</span>
+                                                                    @endif
                                                                 </p>
                                                             </td>
                                                         </tr>
