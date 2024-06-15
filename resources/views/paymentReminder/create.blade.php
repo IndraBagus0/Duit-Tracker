@@ -11,7 +11,20 @@
             </header>
 
             <div class="page-heading">
-                <h3>Tambah Pengingat Pembayaran</h3>
+                <div class="page-title">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <h3>Tambah Pengingat Pembayaran</h3>
+                            <p class="text-subtitle text-muted">Berikut adalah fitur tambah pengingat pembayaran.</p>
+                        </div>
+                        <div class="col-12 col-md-6 mt-md-0">
+                            <div class="text-md-end mb-3 mb-md-0">
+                                <a href="/pengingat-pembayaran" class="btn btn-primary"><i
+                                        class="bi bi-arrow-left-circle"></i> Kembali</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="page-content">
@@ -30,20 +43,20 @@
                         <form action="{{ route('paymentReminder.store') }}" method="POST">
                             @csrf
                             <div class="form-group has-icon-left">
-                                <label for="date-name-icon">Tanggal Pengingat</label>
+                                <label for="reminder-date">Tanggal Pengingat</label>
                                 <div class="position-relative">
                                     <input type="date" class="form-control flatpickr-no-config flatpickr-input"
-                                        name="reminderDate" placeholder="Pilih Tanggal" id="date-name-icon" required>
+                                        name="reminderDate" placeholder="Pilih Tanggal" id="reminder-date" required>
                                     <div class="form-control-icon">
                                         <i class="bi bi-calendar-event"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group has-icon-left">
-                                <label for="nominal-id-icon">Nominal</label>
+                                <label for="nominal-id">Nominal</label>
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="nominal" placeholder="Masukan Nominal"
-                                        id="nominal-id-icon" required>
+                                        id="nominal-id" required>
                                     <input type="hidden" id="nominal" name="nominal">
                                     <div class="form-control-icon">
                                         <i class="bi bi-cash-coin"></i>
@@ -51,9 +64,9 @@
                                 </div>
                             </div>
                             <div class="form-group has-icon-left">
-                                <label for="note-id-icon">Catatan</label>
+                                <label for="note-id">Catatan</label>
                                 <div class="position-relative">
-                                    <textarea id="deskripsi" name="description" class="form-control" placeholder="Masukan Catatan (tidak wajib)"></textarea>
+                                    <textarea id="note-id" name="description" class="form-control" placeholder="Masukan Catatan (tidak wajib)"></textarea>
                                     <div class="form-control-icon">
                                         <i class="bi bi-card-text"></i>
                                     </div>
@@ -68,7 +81,7 @@
             @include('layouts.footer')
         </div>
         <script>
-            var saldo = document.getElementById('nominal-id-icon');
+            var saldo = document.getElementById('nominal-id');
             var nominal = document.getElementById('nominal');
 
             saldo.addEventListener('input', function(e) {
