@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
+    
 class ContactController extends Controller
 {
     public function send(Request $request)
@@ -17,10 +17,10 @@ class ContactController extends Controller
         ]);
 
         $details = [
-            'nama' => $request->nama,
+            'nama' => $request->name,
             'email' => $request->email,
-            'no_hp' => $request->no_hp,
-            'pesan' => $request->pesan,
+            'no_hp' => $request->phoneNumber,
+            'pesan' => $request->message,
         ];
 
         Mail::to('duittracker@gmail.com')->send(new \App\Mail\ContactMail($details));

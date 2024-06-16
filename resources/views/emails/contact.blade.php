@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pengiriman Formulir Kontak</title>
     <style>
@@ -9,6 +10,7 @@
             margin: 0;
             padding: 20px;
         }
+
         .email-container {
             max-width: 600px;
             margin: auto;
@@ -17,40 +19,48 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
+
         .email-header {
             background-color: #007bff;
             color: white;
             padding: 20px;
             text-align: center;
         }
+
         .email-body {
             padding: 20px;
         }
+
         .email-footer {
             background-color: #007bff;
             color: white;
             text-align: center;
             padding: 10px;
         }
+
         .email-body p {
             font-size: 16px;
             line-height: 1.6;
         }
+
         .email-body strong {
             color: #007bff;
         }
+
         .email-body .contact-info {
             margin: 20px 0;
             padding: 10px;
             background-color: #f1f1f1;
             border-radius: 8px;
         }
+
         .email-footer a {
             color: white;
             text-decoration: none;
         }
     </style>
 </head>
+
 <body>
     <div class="email-container">
         <div class="email-header">
@@ -72,4 +82,5 @@
         </div>
     </div>
 </body>
+
 </html>

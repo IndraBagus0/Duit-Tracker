@@ -61,16 +61,16 @@
                                                 <td class="text-bold-500">{{ $loop->index + 1 }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td class="text-bold-500">{{ $user->email }}</td>
-                                                <td class="text-bold-500">{{ $user->no_hp }}</td>
-                                                <td class="text-bold-500">{{ 'Rp ' . number_format($user->saldo, 0, ',', '.') }}</td>
+                                                <td class="text-bold-500">{{ $user->phoneNumber }}</td>
+                                                <td class="text-bold-500">{{ 'Rp ' . number_format($user->accountBalance, 0, ',', '.') }}</td>
                                                 <td class="text-bold-500">
-                                                    @if($user->id_role == 1)
+                                                    @if($user->roleId == 1)
                                                     <span class="badge bg-info">Admin</span>
-                                                    @elseif($user->id_role == 2)
+                                                    @elseif($user->roleId == 2)
                                                     <span class="badge bg-primary">Free</span>
-                                                    @elseif($user->id_role == 3)
+                                                    @elseif($user->roleId == 3)
                                                     <span class="badge bg-success">Premium</span>
-                                                    @elseif($user->id_role == 4)
+                                                    @elseif($user->roleId == 4)
                                                     <span class="badge bg-warning">Upgrade Member</span>
                                                     @endif
                                                 </td>

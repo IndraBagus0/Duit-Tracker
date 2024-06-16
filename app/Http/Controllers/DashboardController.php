@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PengingatPembayaran;
-use App\Models\Transaksi;
+use App\Models\PaymentReminder;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -12,20 +12,20 @@ class DashboardController extends Controller
     public function index()
     {
         // Get the ID of the logged-in user
-        $user_id = Auth::id();
+        $userId = Auth::id();
 
         // Group by month and sum the nominal for pemasukan
-        $pemasukan = Transaksi::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
-            ->where('id_user', $user_id)
-            ->where('jenis_transaksi', 'Pendapatan')
+        $pemasukan = Transaction::selectRaw('MONTH(transactionDate) as month, SUM(transactionAmount) as total')
+            ->where('userId', $userId)
+            ->where('transactionType', 'income')
             ->groupBy('month')
             ->pluck('total', 'month')
             ->toArray();
 
         // Group by month and sum the nominal for pengeluaran
-        $pengeluaran = Transaksi::selectRaw('MONTH(tanggal_transaksi) as month, SUM(nominal_transaksi) as total')
-            ->where('id_user', $user_id)
-            ->where('jenis_transaksi', 'Pengeluaran')
+        $pengeluaran = Transaction::selectRaw('MONTH(transactionDate) as month, SUM(transactionAmount) as total')
+            ->where('userId', $userId)
+            ->where('transactionType', 'outcome')
             ->groupBy('month')
             ->pluck('total', 'month')
             ->toArray();
@@ -40,7 +40,7 @@ class DashboardController extends Controller
         }
 
         // Get all pengingat pembayaran data for the logged-in user
-        $pengingatPembayaran = PengingatPembayaran::where('id_user', $user_id)
+        $pengingatPembayaran = PaymentReminder::where('userId', $userId)
             ->where('status', 'unpaid')
             ->get();
 

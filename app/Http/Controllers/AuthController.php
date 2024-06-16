@@ -9,22 +9,23 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         return view('auth.login');
     }
 
-    public function dologin(Request $request) {
+    public function dologin(Request $request)
+    {
         // validasi
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
-    
+
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
-    
-            if (auth()->user()->id_role === 1) {
 
+            if (auth()->user()->roleId === 1) {
                 return redirect()->route('admin');
             } else {
                 return redirect()->route('user');
@@ -32,8 +33,9 @@ class AuthController extends Controller
         }
         return back()->with('error', 'email atau password salah');
     }
-    
-    public function logout(Request $request) {
+
+    public function logout(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

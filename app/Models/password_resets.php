@@ -9,7 +9,7 @@ class password_resets extends Model
 {
     use HasFactory;
 
-    protected $table = 'password_resets';
+    protected $table = 'tbl_password_resets';
     protected $primaryKey = 'email';
     public $timestamps = false;
 
