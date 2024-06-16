@@ -9546,10 +9546,12 @@ body.theme-dark .swal2-title {
 }
 
 body.theme-dark .swal2-styled.swal2-confirm {
+    margin: .3125em !important;
     background-color: #3699ff !important
 }
 
 body.theme-dark .swal2-styled.swal2-confirm:hover {
+    margin: .3125em !important;
     background-color: #187de4 !important
 }
 
