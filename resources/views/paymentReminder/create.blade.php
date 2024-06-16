@@ -39,6 +39,12 @@
                                 </ul>
                             </div>
                         @endif
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger alert-dismissible show fade" role="alert">
+                                <i class="bi bi-exclamation-circle"></i> {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
 
                         <form action="{{ route('paymentReminder.store') }}" method="POST">
                             @csrf
@@ -66,7 +72,7 @@
                             <div class="form-group has-icon-left">
                                 <label for="note-id">Catatan</label>
                                 <div class="position-relative">
-                                    <textarea id="note-id" name="description" class="form-control" placeholder="Masukan Catatan (tidak wajib)"></textarea>
+                                    <textarea id="note-id" name="description" class="form-control" placeholder="Masukan Catatan (tidak wajib)" required></textarea>
                                     <div class="form-control-icon">
                                         <i class="bi bi-card-text"></i>
                                     </div>
