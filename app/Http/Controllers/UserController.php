@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PaymentReminderController;
 use App\Models\User;
@@ -28,8 +27,14 @@ class UserController extends Controller
         // Panggil getTotalTunggakan dari PaymentReminderController
         $totalTunggakan = $this->paymentReminderController->getTotalTunggakan();
 
+        // Dapatkan pengguna yang sedang login dan pastikan itu instance dari App\Models\User
+        $authenticatedUser = auth()->user();
+        if (!$authenticatedUser instanceof User) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
         // Ambil data laporan untuk pengguna yang sedang login
-        $reportData = $this->reportController->getReportData(auth()->user());
+        $reportData = $this->reportController->getReportData($authenticatedUser);
 
         // Ambil 4 transaksi terbaru untuk pengguna yang sedang login
         $recentTransactions = Transaction::where('userId', auth()->id())
