@@ -52,14 +52,11 @@ body.theme-dark {
     --bs-body-line-height: 1.5;
     --bs-body-color: #c2c2d9;
     --bs-body-bg: #151521;
-    @import "~@fontsource/nunito/300.css";
-    @import "~@fontsource/nunito/400.css";
-    @import "~@fontsource/nunito/600.css";
-    @import "~@fontsource/nunito/700.css";
-    @import "~@fontsource/nunito/800.css"
 }
 
-body.theme-dark *, body.theme-dark :after, body.theme-dark :before {
+body.theme-dark *,
+body.theme-dark :after,
+body.theme-dark :before {
     box-sizing: border-box
 }
 
@@ -371,7 +368,6 @@ body.theme-dark textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    margin: 0
 }
 
 body.theme-dark button,

@@ -2,8 +2,9 @@
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="index.html"><img src="{{asset('template/assets/images/logo/logo.svg')}}" alt="Logo" srcset=""></a>
+                <div class="logo px-2 mt-1">
+                    <a href=""><img src="{{ asset('LandingPage/assets/images/DuidTracker.svg') }}" alt="Logo"
+                            srcset=""></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -39,97 +40,106 @@
             </div>
         </div>
         <div class="sidebar-menu">
-        <ul class="menu">
-    <li class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
-        <a href="/dashboard" class='sidebar-link'>
-            <i class="bi bi-grid-fill"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
+            <ul class="menu">
+                @if (auth()->user()->roleId == 1)
+                    <li class="sidebar-item {{ Request::is('admin*') ? 'active' : '' }}">
+                        <a href="/admin" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Admin Dashboard</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="sidebar-item {{ Request::is('user*') ? 'active' : '' }}">
+                        <a href="/user" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endif
+                @if (auth()->user()->roleId == 1)
+                    <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
+                        <a href="/kategori" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Data Kategori</span>
+                        </a>
+                    </li>
 
-    @if (auth()->user()->id_role == 1)
-        <li class="sidebar-item {{ Request::is('kategori*') ? 'active' : '' }}">
-            <a href="/kategori" class='sidebar-link'>
-                <i class="bi bi-stack"></i>
-                <span>Data Kategori</span>
-            </a>
-        </li>
+                    <li class="sidebar-item {{ Request::is('user*') ? 'active' : '' }}">
+                        <a href="/users" class='sidebar-link'>
+                            <i class="bi bi-person-circle"></i>
+                            <span>Data User</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="sidebar-item has-sub {{ Request::is('transaksi*') ? 'active' : '' }}">
+                        <a href="" class='sidebar-link'>
+                            <i class="bi bi-wallet2"></i>
+                            <span>Data Transaksi</span>
+                        </a>
+                        <ul class="submenu {{ Request::is('transaksi*') ? 'active submenu-open' : '' }}"
+                            style="--submenu-height: 86px;">
+                            <li class="submenu-item {{ Request::routeIs('pemasukan') ? 'active' : '' }}">
+                                <a href="{{ route('pemasukan') }}" class="submenu-link">Pemasukan</a>
+                            </li>
+                            <li class="submenu-item {{ Request::routeIs('pengeluaran') ? 'active' : '' }}">
+                                <a href="{{ route('pengeluaran') }}" class="submenu-link">Pengeluaran</a>
+                            </li>
+                        </ul>
+                    </li>
 
-        <li class="sidebar-item {{ Request::is('user*') ? 'active' : '' }}">
-            <a href="/users" class='sidebar-link'>
-                <i class="bi bi-person-circle"></i>
-                <span>Data User</span>
-            </a>
-        </li>
-    @else
-        <li class="sidebar-item has-sub {{ Request::is('transaksi*') ? 'active' : '' }}">
-            <a href="" class='sidebar-link'>
-                <i class="bi bi-wallet2"></i>
-                <span>Data Transaksi</span>
-            </a>
-            <ul class="submenu {{ Request::is('transaksi*') ? 'active submenu-open' : '' }}" style="--submenu-height: 86px;">
-                <li class="submenu-item {{ Request::routeIs('pendapatan') ? 'active' : '' }}">
-                    <a href="{{ route('pendapatan') }}" class="submenu-link">Pendapatan</a>
+                    <li class="sidebar-item {{ Request::is('laporan*') ? 'active' : '' }}">
+                        <a href="/laporan" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-medical-fill"></i>
+                            <span>Data Laporan</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ Request::is('pengingat-pembayaran*') ? 'active' : '' }}">
+                        <a href="/pengingat-pembayaran" class='sidebar-link'>
+                            <i class="bi bi-clock"></i>
+                            <span>Pengingat Pembayaran</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
+                        <a href="/profil" class='sidebar-link'>
+                            <i class="bi bi-person-circle"></i>
+                            <span>Profil Saya</span>
+                        </a>
+                    </li>
+                @endif
+
+                <li class="sidebar-item">
+                    <form id="logout-form" action="/logout" method="post" class='sidebar-link'>
+                        @csrf
+                        <button class="sidebar-link" type="button" onclick="confirmLogout()"
+                            style="padding: 0; border: none; background: none; text-align: left;">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                 </li>
-                <li class="submenu-item {{ Request::routeIs('pengeluaran') ? 'active' : '' }}">
-                    <a href="{{ route('pengeluaran') }}" class="submenu-link">Pengeluaran</a>
-                </li>
+
+
+
             </ul>
-        </li>
 
-        <li class="sidebar-item {{ Request::is('laporan*') ? 'active' : '' }}">
-            <a href="/laporan" class='sidebar-link'>
-                <i class="bi bi-file-earmark-medical-fill"></i>
-                <span>Data Laporan</span>
-            </a>
-        </li>
-        
-        <li class="sidebar-item {{ Request::is('pengingat_pembayaran*') ? 'active' : '' }}">
-            <a href="/pengingat_pembayaran" class='sidebar-link'>
-                <i class="bi bi-clock"></i>
-                <span>Pengingat Pembayaran</span>
-            </a>
-        </li>
-
-        <li class="sidebar-item {{ Request::is('profil*') ? 'active' : '' }}">
-            <a href="/profil" class='sidebar-link'>
-                <i class="bi bi-person-circle"></i>
-                <span>Profil Saya</span>
-            </a>
-        </li>
-
-    @endif
-
-    <li class="sidebar-item">
-        <form id="logout-form" action="/logout" method="post" class='sidebar-link'>
-            @csrf
-            <button class="sidebar-link" type="button" onclick="confirmLogout()" style="padding: 0; border: none; background: none; text-align: left;">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Logout</span>
-            </button>
-        </form>
-    </li>
-    
-
-
-</ul>
-
+        </div>
     </div>
-</div>
-<script>
-    function confirmLogout() {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You will be logged out!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, logout!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
-            }
-        });
-    }
-</script>
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: "Apakah Kamu Yakin?",
+                text: "Kamu harus masuk lagi untuk kembali kesini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Iya, Keluar!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+    </script>

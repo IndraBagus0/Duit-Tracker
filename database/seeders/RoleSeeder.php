@@ -9,11 +9,11 @@ class RoleSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('role')->insert([
-            ['nama_role' => 'admin'],
-            ['nama_role' => 'user'],
-            ['nama_role' => 'premium'],
-            ['nama_role' => 'upgrade'],
+        DB::table('tbl_role')->insert([
+            ['roleName' => 'admin'],
+            ['roleName' => 'user'],
+            ['roleName' => 'premium'],
+            ['roleName' => 'upgrade'],
         ]);
     }
 }

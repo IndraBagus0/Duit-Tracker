@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
 @section('contents')
-<body>
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="/p"><img src="{{ asset('template/assets/images/logo/logo.svg') }}" alt="Logo"></a>
+                        <a href="/p"><img src="{{ asset('LandingPage/assets/images/DuidTracker.svg') }}"
+                                alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">Lupa Kata Sandi</h1>
                     <p class="auth-subtitle mb-5">Masukkan E-Mail kamu yang sudah terdaftar.</p>
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         @error('email')
-                        <small>{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Konfirmasi</button>
                     </form>
@@ -35,23 +35,21 @@
         </div>
     </div>
 
-
     <script>
-        @if(session('success'))
-        Swal.fire({
-            title: "Success!",
-            text: "{{ session('success') }}",
-            icon: "success"
-        });
+        @if (session('success'))
+            Swal.fire({
+                title: "Success!",
+                text: "{{ session('success') }}",
+                icon: "success"
+            });
         @endif
 
-        @if(session('error'))
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "{{ session('error') }}",
-        });
+        @if (session('error'))
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "{{ session('error') }}",
+            });
         @endif
     </script>
-</body>
 @endsection
