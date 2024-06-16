@@ -12,14 +12,18 @@ class ReportController extends Controller
 {
     public function __construct()
     {
-        // Set locale ke bahasa Indonesia
         Carbon::setLocale('id');
     }
 
     public function index(Request $request)
     {
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
         $reportData = $this->getReportData(
-            Auth::user(),
+            $user,
             $request->input('date_range'),
             $request->input('jenis_transaksi')
         );
@@ -29,8 +33,13 @@ class ReportController extends Controller
 
     public function print(Request $request)
     {
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+
         $reportData = $this->getReportData(
-            Auth::user(),
+            $user,
             $request->input('date_range'),
             $request->input('jenis_transaksi'),
             $request->input('start_date'),
