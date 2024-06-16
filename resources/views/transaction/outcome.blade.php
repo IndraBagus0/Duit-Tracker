@@ -110,11 +110,8 @@
             var transactionAmount = document.getElementById('transactionAmount');
 
             saldo.addEventListener('input', function(e) {
-                // Remove formatting to get plain number
                 var plainNumber = removeNonNumeric(this.value);
-                // Update the hidden input with the plain number
                 transactionAmount.value = plainNumber;
-                // Format the value and update the visible input
                 this.value = formatRupiah(plainNumber, 'Rp. ');
             });
 

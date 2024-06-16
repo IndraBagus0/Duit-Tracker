@@ -28,19 +28,9 @@ class PaymentReminderController extends Controller
         $request->validate([
             'reminderDate' => 'required|date',
             'nominal' => 'required|numeric',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ]);
 
-        $user = Auth::user();
-        $user_id = $user->id;
-        $user_role = $user->roleId;
-
-        if (in_array($user_role, [2, 4])) {
-            $transaksi_count = PaymentReminder::where('userId', $user_id)->where('status', 'Belum Lunas')->count();
-            if ($transaksi_count >= 5) {
-                return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 data. Silahkan Upgrade ke premium');
-            }
-        }
         PaymentReminder::create([
             'reminderDate' => $request->reminderDate,
             'nominal' => $request->nominal,

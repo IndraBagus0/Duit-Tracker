@@ -55,7 +55,7 @@ class TransactionController extends Controller
         if (in_array($user_role, [2, 4])) {
             $transaksi_count = Transaction::where('userId', $user_id)->count();
             if ($transaksi_count >= 5) {
-                return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 data. Silahkan Upgrade ke premium');
+                return redirect()->back()->with('error', 'Anda hanya dapat menginputkan maksimal 5 data.');
             }
         }
 

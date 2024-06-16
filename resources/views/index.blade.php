@@ -212,8 +212,8 @@
                                 <i class="ti ti-file-spreadsheet text-primary position-relative"></i>
                             </div>
 
-                            <h3 class="fs-4">Export Excel</h3>
-                            <p class="fs-7 mb-0 fw-500">Laporan keuangan bisa di jadikan format excel berdasarkan
+                            <h3 class="fs-4">Export Document</h3>
+                            <p class="fs-7 mb-0 fw-500">Laporan keuangan bisa di jadikan format Document berdasarkan
                                 antara tangggal yang dipilih.</p>
                         </div>
                     </div>
@@ -537,7 +537,10 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="copyrights text-center blue-light  fw-500">@<span id="autodate">2024</span> - Duit Tracker
+                <div class="copyrights text-center blue-light  fw-500">@<span id="autodate">2023</span> - All Rights
+                    Reserved by <a href="https://adminmart.com/"
+                        class="blue-light text-decoration-none">adminmart.com</a> Dsitributed By <a
+                        href="https://themewagon.com" class="blue-light text-decoration-none">ThemeWagon</a></div>
             </div>
     </footer>
     <!------------------------------>
