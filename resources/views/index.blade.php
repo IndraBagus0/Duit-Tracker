@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="position-relative right-hero-color">
-                        <img src="{{ asset('LandingPage/assets/images/hero/right-image.svg') }}" class="img-fluid">
+                        <img src="{{ asset('LandingPage/assets/images/vector.jpg') }}" class="img-fluid">
                     </div>
                 </div>
             </div>
