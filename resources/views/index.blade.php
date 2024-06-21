@@ -534,14 +534,10 @@
     <!------------------------------>
     <!-----Footer Start------------->
     <!------------------------------>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="copyrights text-center blue-light  fw-500">@<span id="autodate">2023</span> - All Rights
-                    Reserved by <a href="https://adminmart.com/"
-                        class="blue-light text-decoration-none">adminmart.com</a> Dsitributed By <a
-                        href="https://themewagon.com" class="blue-light text-decoration-none">ThemeWagon</a></div>
-            </div>
+    <footer class="footer py-2">
+        <div class="text-center blue-light  fw-500 my-5">@<span id="autodate"></span> - All Rights
+            Reserved by <a href="https://adminmart.com/" class="blue-light text-decoration-none">Duit Tracker</a>
+        </div>
     </footer>
     <!------------------------------>
     <!-------Footer End------------->

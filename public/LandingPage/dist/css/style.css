@@ -11380,10 +11380,6 @@ textarea.form-control-lg {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-.footer .copyrights {
-  padding-top: 70px;
-}
-
 .btn {
   padding: 18px 35px;
   border-radius: 15px;
@@ -11728,10 +11724,6 @@ textarea.form-control {
   }
   .footer .row .col-xxl-2 {
     margin-bottom: 30px;
-  }
-  .footer .copyrights {
-    padding-top: 10px;
-    line-height: 30px;
   }
   .portfolio .portfolio-slider .owl-stage {
     left: 35px;
